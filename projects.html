@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Projects — Sai Pratheek Banda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Selected projects by Sai Pratheek Banda — data engineering, automation, optimization, and analytics." />
+  <link rel="canonical" href="https://saipratheekbanda.com/projects.html" />
+  <meta name="theme-color" content="#0a66c2" />
+  <link href="style.css" rel="stylesheet" />
+  <link href="projects.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="index.html" aria-label="Home">SPB</a>
+      <ul class="menu">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a class="btn small" href="assets/Sai_Pratheek_Banda_DE_Edited.pdf" target="_blank" rel="noopener">Résumé</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="projects container">
+    <aside class="sidebar" aria-label="Project navigation">
+      <div class="sidebar-header">
+        <h1>Projects</h1>
+        <input id="project-search" type="search" placeholder="Search projects…" aria-label="Search projects" />
+      </div>
+      <nav id="side-nav"></nav>
+    </aside>
+
+    <section class="content" id="project-content" tabindex="-1" aria-live="polite">
+      <!-- Filled dynamically by projects.js -->
+      <div class="placeholder">
+        <h2>Select a project</h2>
+        <p>Choose a project from the left to see description, outcomes, and stack.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <small>© <span id="year"></span> Sai Pratheek Banda • <a href="/">saipratheekbanda.com</a></small>
+    </div>
+  </footer>
+
+  <script src="projects.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
