@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sai Pratheek Banda — Data Engineer</title>
+  <meta name="description" content="Sai Pratheek Banda — Senior Data Engineer. Azure, Databricks, PySpark, SQL. Building reliable data products & automation." />
+  <link rel="canonical" href="https://saipratheekbanda.com/" />
+  <meta name="theme-color" content="#0a66c2" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Sai Pratheek Banda — Data Engineer" />
+  <meta property="og:description" content="Azure · Databricks · PySpark · SQL · Automation" />
+  <meta property="og:url" content="https://saipratheekbanda.com/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Home">SPB</a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul id="menu" class="menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="btn small" href="assets/SaiPratheekBanda-Resume.pdf" target="_blank" rel="noopener">Résumé</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="container">
+    <!-- Hero -->
+    <section id="top" class="hero">
+      <div class="hero-text">
+        <h1>Hi, I’m <span class="accent">Sai Pratheek Banda</span>.</h1>
+        <p class="subtitle">Senior Data Engineer — Azure · Databricks · PySpark · SQL · Automation</p>
+        <div class="ctas">
+          <a class="btn" href="#work">See my work</a>
+          <a class="btn ghost" href="mailto:saipratheek.banda@gmail.com">Email me</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <img src="assets/profile.jpg" alt="Portrait of Sai Pratheek Banda" onerror="this.style.display='none'">
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="card">
+      <h2>About</h2>
+      <p>
+        I design and ship reliable data products—pipelines, analytics models, and automation—mostly on Azure
+        (Databricks, ADF, SQL, Key Vault, Functions). I care about clarity, performance, and maintainability.
+      </p>
+      <ul class="bullets">
+        <li>Builds Delta/Spark pipelines & cost-aware workloads</li>
+        <li>Packages reusable Python utilities (SharePoint/Graph/SendGrid clients)</li>
+        <li>Data modeling for customer ops & supply chain KPIs</li>
+      </ul>
+    </section>
+
+    <!-- Projects -->
+    <section id="work">
+      <h2>Selected Projects</h2>
+      <div class="grid">
+        <article class="proj">
+          <h3>Supplier Assignment Optimization</h3>
+          <p>Linear programming + business constraints to allocate weekly POs by lane/supplier, balancing FEU targets and MQC.</p>
+          <div class="tags">
+            <span>PySpark</span><span>Optimization</span><span>Delta</span>
+          </div>
+        </article>
+        <article class="proj">
+          <h3>Integrated Customer Data Marketplace</h3>
+          <p>One-stop KPI platform (Responsiveness & Quality). Curated Delta tables, publish views, and docs for analysts.</p>
+          <div class="tags">
+            <span>Databricks</span><span>Delta</span><span>SQL</span>
+          </div>
+        </article>
+        <article class="proj">
+          <h3>Automation Toolkit</h3>
+          <p>Reusable Python wheel: SendGrid emails, SharePoint uploads, Power BI, ADF triggers, Graph API auth.</p>
+          <div class="tags">
+            <span>Python</span><span>Azure</span><span>CI/CD</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="card">
+      <h2>Skills</h2>
+      <div class="tags lg">
+        <span>Azure</span><span>Databricks</span><span>PySpark</span><span>SQL</span>
+        <span>Delta Lake</span><span>ADF</span><span>Functions</span><span>Python</span>
+        <span>Optimization</span><span>Power BI</span><span>APIs</span><span>GitHub Actions</span>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <p>Open to interesting problems and high-impact builds.</p>
+      <div class="ctas">
+        <a class="btn" href="mailto:saipratheek.banda@gmail.com">Email</a>
+        <a class="btn ghost" href="https://github.com/pratheekdata" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/saipratheekbanda" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <small>© <span id="year"></span> Sai Pratheek Banda • <a href="/">saipratheekbanda.com</a></small>
+    </div>
+  </footer>
+
+  <!-- JSON-LD for basic SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sai Pratheek Banda",
+    "url": "https://saipratheekbanda.com/",
+    "jobTitle": "Senior Data Engineer",
+    "email": "mailto:saipratheek.banda@gmail.com",
+    "sameAs": [
+      "https://github.com/pratheekdata",
+      "https://www.linkedin.com/in/saipratheekbanda"
+    ]
+  }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
