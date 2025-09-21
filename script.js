@@ -1,63 +1,49 @@
-// mobile menu
-const btn = document.querySelector('.menu-btn');
-const ul = document.getElementById('menu');
-if (btn) {
-  btn.addEventListener('click', () => {
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!expanded));
-    ul.classList.toggle('show');
-  });
-}
+// ---- 3-position THEME switch: Light | Auto (default) | Dark ----
+(function () {
+  const KEY = "theme-preference";   // "auto" | "light" | "dark"
+  const html = document.documentElement;
+  const seg  = document.getElementById("theme-rail");
+  const rLight = document.getElementById("th-light");
+  const rAuto  = document.getElementById("th-auto");
+  const rDark  = document.getElementById("th-dark");
+  const sysPref = window.matchMedia("(prefers-color-scheme: dark)");
 
-// smooth scroll for same-page links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth' });
-      ul?.classList.remove('show');
-      btn?.setAttribute('aria-expanded', 'false');
-    }
-  });
-});
+  function getPref(){ return localStorage.getItem(KEY) || "auto"; }
+  function setPref(v){ localStorage.setItem(KEY, v); apply(v); }
 
-// current year
-document.getElementById('year').textContent = new Date().getFullYear();
-// ---- Theme toggle: cycles Auto → Dark → Light ----
-(function() {
-  const key = "theme-preference";  // "auto" | "dark" | "light"
-  const btn = document.getElementById("theme-toggle");
+  function apply(mode){
+    // Apply theme
+    if (mode === "dark") html.setAttribute("data-theme","dark");
+    else if (mode === "light") html.setAttribute("data-theme","light");
+    else html.removeAttribute("data-theme"); // Auto → follow system
 
-  function apply(mode) {
-    const html = document.documentElement;
-    if (mode === "dark") {
-      html.setAttribute("data-theme", "dark");
-      btn.textContent = "Dark";
-    } else if (mode === "light") {
-      html.setAttribute("data-theme", "light");
-      btn.textContent = "Light";
-    } else {
-      html.removeAttribute("data-theme"); // fall back to prefers-color-scheme
-      btn.textContent = "Auto";
+    // Reflect UI position
+    if (rLight && rAuto && rDark) {
+      rLight.checked = (mode === "light");
+      rAuto.checked  = (mode === "auto");
+      rDark.checked  = (mode === "dark");
     }
   }
 
-  function getPref() {
-    return localStorage.getItem(key) || "auto";
-  }
-  function setPref(mode) {
-    localStorage.setItem(key, mode);
-    apply(mode);
-  }
-
-  // init
+  // Initialize (default Auto in the middle)
   apply(getPref());
 
-  // click handler cycles modes
-  btn?.addEventListener("click", () => {
-    const next = { "auto": "dark", "dark": "light", "light": "auto" }[getPref()];
-    setPref(next);
+  // Live update when OS theme changes (only in Auto)
+  sysPref.addEventListener?.("change", () => { if (getPref()==="auto") apply("auto"); });
+
+  // Clicks on labels (native) update radios; hook 'change'
+  [rLight, rAuto, rDark].forEach(r => r?.addEventListener("change", () => {
+    if (r.checked) setPref(r.value);
+  }));
+
+  // Arrow-left / Arrow-right on the whole control
+  seg?.addEventListener("keydown", (e) => {
+    const order = ["light","auto","dark"];
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    let i = order.indexOf(getPref());
+    i += (e.key === "ArrowRight" ? +1 : -1);
+    i = Math.max(0, Math.min(2, i));
+    setPref(order[i]);
   });
 })();
