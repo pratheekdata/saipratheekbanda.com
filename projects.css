@@ -1,39 +1,18 @@
-/* page-specific layout that builds on style.css */
+/* ==================================================
+   projects.css — reorganized sections
+   Purpose: page-specific layout and sidebar/tool styles
+   Keep semantics unchanged; only restructured for clarity
+   ================================================== */
+
+/* --------------------------
+   Layout (page-level)
+   -------------------------- */
 .projects {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 1.25rem;
   padding: 1.25rem 0 2rem;
 }
-
-.sidebar {
-  position: sticky; top: 72px;
-  align-self: start;
-  background: var(--card);
-  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  border-radius: var(--radius);
-  padding: .9rem;
-  max-height: calc(100vh - 96px);
-  overflow: auto;
-}
-
-.sidebar-header { position: sticky; top: 0; background: var(--card); padding-bottom: .5rem; }
-.sidebar h1 { font-size: 1.15rem; margin: .25rem 0 .5rem; }
-#project-search {
-  width: 100%; padding: .55rem .7rem; border-radius: 10px; border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
-}
-
-#side-nav { margin-top: .75rem; }
-.side-group { margin: .75rem 0; }
-.side-group h3 { font-size: .95rem; margin: .5rem 0 .25rem; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
-.side-list { list-style: none; margin: 0; padding-left: 0; }
-.side-list li { margin: 0; }
-.side-link {
-  display: block; padding: .45rem .55rem; border-radius: 8px;
-  text-decoration: none; color: inherit;
-}
-.side-link:hover { background: var(--brand-ghost); }
-.side-link.active { background: var(--brand-ghost); font-weight: 600; }
 
 .content {
   background: var(--card);
@@ -45,32 +24,66 @@
 
 .content h2 { margin-top: .2rem; margin-bottom: .4rem; }
 .meta { color: var(--muted); margin-bottom: .75rem; }
-.tagrow { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0 1rem; }
-.tagrow span { background: var(--brand-ghost); border-radius: 999px; padding: .25rem .6rem; font-weight: 600; font-size: .85rem; }
 
-.block { margin: 1rem 0; }
-.block h3 { margin: 0 0 .25rem; }
-
-.kv { display: grid; grid-template-columns: 140px 1fr; gap: .35rem .8rem; }
-.kv div:nth-child(odd) { color: var(--muted); }
-
-.placeholder { color: var(--muted); }
+/* Responsive adjustments */
 @media (max-width: 900px) {
   .projects { grid-template-columns: 1fr; }
   .sidebar { position: static; max-height: none; }
 }
-/* Header toolbar */
-.side-tools { display:flex; gap:.4rem; margin-top:.5rem; align-items:center; }
-.tool {
-  background: transparent; border:1px solid color-mix(in oklab, var(--text) 15%, transparent);
-  padding:.25rem .5rem; border-radius:8px; cursor:pointer; font-weight:600;
-}
-.tool:hover { background: color-mix(in oklab, var(--text) 8%, transparent); }
-.compact-toggle { display:flex; gap:.35rem; align-items:center; padding:.2rem .4rem; border-radius:8px; border:1px solid color-mix(in oklab, var(--text) 15%, transparent); cursor:pointer; }
-.compact-toggle input { margin:0; }
 
-/* Accordion categories using <details>/<summary> */
-.acc { border-radius: 10px; overflow: hidden; border:1px solid color-mix(in oklab, var(--text) 10%, transparent); background: var(--card); margin:.5rem 0; }
+
+/* --------------------------
+   Sidebar container + header
+   -------------------------- */
+.sidebar {
+  position: sticky; top: 72px;
+  align-self: start;
+  background: var(--card);
+  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  border-radius: var(--radius);
+  padding: .9rem;
+  max-height: calc(100vh - 96px);
+  overflow: auto;
+}
+
+.sidebar-header {
+  position: sticky; top: 0; background: var(--card); padding-bottom: .5rem;
+}
+.sidebar h1 { font-size: 1.15rem; margin: .25rem 0 .5rem; }
+
+#project-search {
+  width: 100%; padding: .55rem .7rem; border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+}
+
+#side-nav { margin-top: .75rem; }
+.side-group { margin: .75rem 0; }
+.side-group h3 {
+  font-size: .95rem; margin: .5rem 0 .25rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em;
+}
+
+.side-list { list-style: none; margin: 0; padding-left: 0; }
+.side-list li { margin: 0; }
+.side-link {
+  display: block; padding: .45rem .55rem; border-radius: 8px;
+  text-decoration: none; color: inherit;
+}
+.side-link:hover { background: var(--brand-ghost); }
+.side-link.active { background: var(--brand-ghost); font-weight: 600; }
+
+.placeholder { color: var(--muted); }
+
+
+/* --------------------------
+   Accordion (categories)
+   Uses <details>/<summary>
+   -------------------------- */
+.acc {
+  border-radius: 10px; overflow: hidden;
+  border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  background: var(--card); margin:.5rem 0;
+}
 .acc[open] { border-color: color-mix(in oklab, var(--text) 18%, transparent); }
 
 .acc > summary {
@@ -98,7 +111,68 @@
 /* Hide groups with no visible items (search) */
 .side-group.hidden { display:none; }
 
-/* Compact mode */
+/* Compact mode tweaks for the sidebar */
 .sidebar.compact .acc > summary { padding:.4rem .5rem; font-size:.9rem; }
 .sidebar.compact .acc .side-link { padding:.3rem .45rem; }
 .sidebar.compact .acc .side-list { padding:.25rem; }
+
+
+/* --------------------------
+   Header / Toolbar / Tools
+   -------------------------- */
+/* Tools row: keep items on one line where possible */
+
+.sidebar-header .head-row h1{
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: .25rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Ensure the title doesn't force wrapping */
+.sidebar-header .head-row h1{ flex:1 1 auto; min-width:0; margin: .25rem 0; }
+.side-tools{ flex:0 0 auto; display:flex; align-items:center; gap:.35rem; white-space:nowrap; }
+
+/* Chip buttons (compact, pill-like) */
+.btn-chip{
+  display:flex; align-items:center; gap:.4rem;
+  padding:.38rem .55rem; border-radius:999px; cursor:pointer;
+  background: color-mix(in oklab, var(--card) 80%, var(--brand-ghost) 20%);
+  border:1px solid color-mix(in oklab, var(--text) 14%, transparent);
+  font-weight:600; line-height:1;
+}
+.btn-chip.sm{ font-size:.85rem; padding:.28rem .48rem; }
+.btn-chip:hover{
+  background: color-mix(in oklab, var(--card) 70%, var(--brand-ghost) 30%);
+}
+.btn-chip:focus-visible{
+  outline:2px solid color-mix(in oklab, var(--brand) 65%, transparent);
+  outline-offset:2px;
+}
+.btn-chip[aria-pressed="true"]{
+  background: color-mix(in oklab, var(--brand-ghost) 75%, var(--card) 25%);
+  border-color: color-mix(in oklab, var(--brand) 35%, var(--text) 12%);
+}
+.btn-chip:active{
+  transform: translateY(1px);
+  filter: brightness(0.98);
+}
+.chip-icon{ font-size:.95rem; }
+.chip-label{ font-weight:600; }
+
+
+/* If space gets tight, collapse labels to keep one line */
+@media (max-width: 600px){
+  .btn-chip.sm{ font-size:.82rem; padding:.26rem .42rem; }
+}
+@media (max-width: 520px){
+  .side-tools .chip-label{ display:none; }
+  .btn-chip.sm{ padding:.34rem; }
+}
+@media (prefers-reduced-motion: reduce){
+  .btn-chip{ transition: none; }
+  .btn-chip:active{ transform:none; }
+}
+
