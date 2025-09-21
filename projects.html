@@ -16,18 +16,11 @@
       <a class="brand" href="index.html" aria-label="Home">SPB</a>
       <ul class="menu">
         <li>
-          <!-- 3-position theme switch: Light · Auto (default) · Dark -->
-          <div class="theme-rail" id="theme-rail" tabindex="0" aria-label="Theme switch">
-            <input type="radio" id="th-light" name="theme" value="light" />
-            <label for="th-light" title="Light" aria-label="Light">☀️</label>
-
-            <input type="radio" id="th-auto"  name="theme" value="auto"  />
-            <label for="th-auto"  title="Auto"  aria-label="Auto">A</label>
-
-            <input type="radio" id="th-dark"  name="theme" value="dark"  />
-            <label for="th-dark"  title="Dark"  aria-label="Dark">🌙</label>
-
+          <!-- 2-position theme toggle: Light ⇄ Dark (Auto by default; long-press to reset Auto) -->
+          <div class="theme-toggle2" id="theme-toggle2" role="switch" aria-checked="false" title="Click to toggle Light/Dark. Long-press to reset Auto.">
+            <span class="icon sun" aria-hidden="true">☀️</span>
             <span class="thumb" aria-hidden="true"></span>
+            <span class="icon moon" aria-hidden="true">🌙</span>
           </div>
         </li>
         <li><a href="index.html#about">About</a></li>
@@ -71,7 +64,7 @@
       <small>© <span id="year"></span> Sai Pratheek Banda • <a href="/">saipratheekbanda.com</a></small>
     </div>
   </footer>
-
+  <script src="script.js"></script>
   <script src="projects.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
