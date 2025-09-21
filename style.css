@@ -1,3 +1,29 @@
+/* Force theme via attribute on <html> */
+html[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --card: #f8fafc;
+  --brand-ghost: #e6f0fb;
+}
+html[data-theme="dark"] {
+  --bg: #0b0f14;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --card: #0f1621;
+  --brand-ghost: #0a223c;
+}
+
+/* Theme toggle button */
+.theme-btn {
+  background: transparent;
+  border: 1px solid color-mix(in oklab, var(--text) 15%, transparent);
+  padding: .4rem .7rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.theme-btn:hover { background: var(--brand-ghost); }
+
 :root {
   --bg: #ffffff;
   --text: #111827;

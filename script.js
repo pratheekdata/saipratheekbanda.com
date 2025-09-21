@@ -25,3 +25,39 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // current year
 document.getElementById('year').textContent = new Date().getFullYear();
+// ---- Theme toggle: cycles Auto → Dark → Light ----
+(function() {
+  const key = "theme-preference";  // "auto" | "dark" | "light"
+  const btn = document.getElementById("theme-toggle");
+
+  function apply(mode) {
+    const html = document.documentElement;
+    if (mode === "dark") {
+      html.setAttribute("data-theme", "dark");
+      btn.textContent = "Dark";
+    } else if (mode === "light") {
+      html.setAttribute("data-theme", "light");
+      btn.textContent = "Light";
+    } else {
+      html.removeAttribute("data-theme"); // fall back to prefers-color-scheme
+      btn.textContent = "Auto";
+    }
+  }
+
+  function getPref() {
+    return localStorage.getItem(key) || "auto";
+  }
+  function setPref(mode) {
+    localStorage.setItem(key, mode);
+    apply(mode);
+  }
+
+  // init
+  apply(getPref());
+
+  // click handler cycles modes
+  btn?.addEventListener("click", () => {
+    const next = { "auto": "dark", "dark": "light", "light": "auto" }[getPref()];
+    setPref(next);
+  });
+})();
