@@ -170,3 +170,26 @@ a:hover { text-decoration: underline; }
 
 .theme-rail:hover label{ background: color-mix(in oklab, var(--text) 6%, transparent); }
 /* End theme switch */
+
+/* 2-position theme toggle */
+.theme-toggle2{
+  position: relative; display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 0; width: 96px; height: 36px;
+  border: 1px solid color-mix(in oklab, var(--text) 15%, transparent);
+  border-radius: 999px; background: var(--bg); cursor: pointer; user-select: none;
+}
+.theme-toggle2 .icon{ text-align:center; font-size: .95rem; opacity: .9; z-index:1; }
+.theme-toggle2 .thumb{
+  position: absolute; top: 3px; bottom: 3px; left: 3px;
+  width: calc(50% - 6px); border-radius: 999px;
+  background: var(--brand-ghost);
+  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  transition: transform .18s ease;
+}
+/* Positions driven by data-state */
+.theme-toggle2[data-state="light"] .thumb{ transform: translateX(0%); }
+.theme-toggle2[data-state="dark"]  .thumb{ transform: translateX(100%); }
+
+/* Hover nicety */
+.theme-toggle2:hover{ background: color-mix(in oklab, var(--text) 6%, transparent); }
+/* End 2-position theme toggle */
