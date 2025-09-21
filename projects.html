@@ -35,19 +35,28 @@
   <main class="projects container">
     <aside class="sidebar" aria-label="Project navigation">
       <div class="sidebar-header">
-        <h1>Projects</h1>
+        <div class="head-row">
+          <h1>Projects</h1>
+          <div class="side-tools" aria-label="Sidebar controls">
+            <button id="toggle-all" class="btn-chip sm" type="button"
+                    title="Expand / Collapse" aria-label="Expand / Collapse" aria-pressed="false">
+              <span class="chip-icon">▸▸</span>
+              <span class="chip-label">Expand</span>
+            </button>
+
+            <button id="toggle-compact" class="btn-chip sm" type="button"
+                    title="Compact on/off" aria-label="Compact on/off" aria-pressed="false">
+              <span class="chip-icon">◻︎</span>
+              <span class="chip-label">Compact</span>
+            </button>
+          </div>
         <input id="project-search" type="search" placeholder="Search projects…" aria-label="Search projects" />
-        <div class="side-tools" aria-label="Sidebar controls">
-          <button id="expand-all" class="tool" title="Expand all" aria-label="Expand all">▾▾</button>
-          <button id="collapse-all" class="tool" title="Collapse all" aria-label="Collapse all">▸▸</button>
-          <label class="tool compact-toggle" title="Compact list" aria-label="Compact list">
-            <input type="checkbox" id="compact-toggle" />
-            <span>Compact</span>
-          </label>
-        </div>
       </div>
+
       <nav id="side-nav" aria-label="Project categories"></nav>
     </aside>
+
+
 
 
     <section class="content" id="project-content" tabindex="-1" aria-live="polite">
