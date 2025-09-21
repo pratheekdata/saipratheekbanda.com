@@ -128,6 +128,7 @@
 .gear-menu .menu-status strong{ color: inherit; font-weight:700; margin-left:.25rem; }
 
 
+
 /* --------------------------
    Header / Toolbar / Tools
    -------------------------- */
@@ -154,6 +155,7 @@
   border:1px solid color-mix(in oklab, var(--text) 14%, transparent);
   font-weight:600; line-height:1;
 }
+
 .btn-chip .chip-label{ color: inherit; }
 .btn-chip.sm{ font-size:.85rem; padding:.28rem .48rem; }
 .btn-chip:hover{
