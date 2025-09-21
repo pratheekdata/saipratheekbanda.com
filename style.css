@@ -108,3 +108,10 @@ a:hover { text-decoration: underline; }
   .menu { display: none; position: absolute; right: 4%; top: 56px; background: var(--bg); padding: .75rem; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); }
   .menu.show { display: grid; gap: .5rem; }
 }
+
+/* Category cards on the homepage */
+.cats .cat { background: var(--card); padding: 1rem; border-radius: var(--radius);
+  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent); }
+.cats .tease { color: var(--muted); margin: .25rem 0 .5rem; }
+.cat-list { margin: .4rem 0 .8rem; padding-left: 1.1rem; }
+.cat-list li { margin: .25rem 0; }

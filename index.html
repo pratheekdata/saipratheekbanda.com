@@ -37,64 +37,102 @@
   </header>
 
   <main id="main" class="container">
-    <!-- Hero -->
-    <section id="top" class="hero">
-      <div class="hero-text">
-        <h1>Hi, I’m <span class="accent">Sai Pratheek Banda</span>.</h1>
-        <p class="subtitle">Senior Data Engineer — Azure · Databricks · PySpark · SQL · Automation</p>
-        <div class="ctas">
-          <a class="btn" href="#work">See my work</a>
-          <a class="btn ghost" href="mailto:saipratheek.banda@gmail.com">Email me</a>
+       <!-- Hero -->
+      <section id="top" class="hero">
+        <div class="hero-text">
+          <h1>Hi, I’m <span class="accent">Sai Pratheek Banda</span>.</h1>
+          <p class="subtitle">Senior Data Engineer — Azure · Databricks · PySpark · SQL · Automation</p>
+          <div class="ctas">
+            <a class="btn" href="#work">See my work</a>
+            <a class="btn ghost" href="mailto:saipratheek.banda@gmail.com">Email me</a>
+          </div>
         </div>
-      </div>
-      <div class="hero-media">
-        <img src="assets/profile.jpg" alt="Portrait of Sai Pratheek Banda" onerror="this.style.display='none'">
+        <div class="hero-media">
+          <img src="assets/profile.jpg" alt="Portrait of Sai Pratheek Banda" onerror="this.style.display='none'">
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="card">
+        <h2>About</h2>
+        <p>
+          I’m a Senior Data Engineer who turns messy, operational data into reliable products—pipelines, KPI layers,
+          and automation—primarily on Azure (Databricks, ADF, Functions, SQL, Key Vault). I optimize for clarity,
+          performance, and maintainability, then measure outcomes in saved hours, dollars, and happier users.
+        </p>
+        <ul class="bullets">
+          <li>Shipped CI/CD + Terraform IaC patterns; standardized environments and cut manual toil</li>
+          <li>Built high-volume ETL (1M+ rows/day) from ADLS → SQL → Power BI for 350+ stakeholders</li>
+          <li>Automation & apps that reduce repetitive work and improve customer experience</li>
+        </ul>
+      </section>
+
+
+      <section id="work">
+      <h2>Projects</h2>
+
+      <!-- Category cards that deep-link into projects.html -->
+      <div class="grid cats">
+
+        <article class="cat">
+          <h3>Data Platforms &amp; Pipelines</h3>
+          <p class="tease">Curated layers and dependable ETL on Azure Databricks/ADF.</p>
+          <ul class="cat-list">
+            <li><a href="projects.html#icdm-marketplace">Integrated Customer Data Marketplace</a> — KPI model & publish layers</li>
+            <li><a href="projects.html#etl-to-insights">High-Volume ETL to Insights</a> — 1M+ rows/day to BI</li>
+          </ul>
+          <a class="btn small ghost" href="projects.html#cat/data-platforms-pipelines">View all</a>
+        </article>
+
+        <article class="cat">
+          <h3>Automation &amp; Tools</h3>
+          <p class="tease">Reusable Python utilities, schedulers, and alerting.</p>
+          <ul class="cat-list">
+            <li><a href="projects.html#exception-notifier">Exception Notifier (North America)</a> — templated comms & logging</li>
+            <li><a href="projects.html#pm-kpi-automation">PM KPI Automation (Asana)</a> — REST sync & publishing</li>
+          </ul>
+          <a class="btn small ghost" href="projects.html#cat/automation-tools">View all</a>
+        </article>
+
+        <article class="cat">
+          <h3>Microsoft Ecosystem Integrations</h3>
+          <p class="tease">Graph, SharePoint, Power BI, ADF—wired together cleanly.</p>
+          <ul class="cat-list">
+            <li><a href="projects.html#automation-toolkit">Automation Toolkit</a> — SharePoint/Graph/SendGrid/Power BI clients</li>
+          </ul>
+          <a class="btn small ghost" href="projects.html#cat/microsoft-integrations">View all</a>
+        </article>
+
+        <article class="cat">
+          <h3>Analytics &amp; Insights</h3>
+          <p class="tease">Decision support layers and KPI storytelling.</p>
+          <ul class="cat-list">
+            <li><a href="projects.html#icdm-marketplace">Customer/Org KPI model</a> — responsiveness & quality</li>
+          </ul>
+          <a class="btn small ghost" href="projects.html#cat/analytics-insights">View all</a>
+        </article>
+
+        <article class="cat">
+          <h3>Azure Platform Admin &amp; FinOps</h3>
+          <p class="tease">IaC, CI/CD, and cost-aware operations.</p>
+          <ul class="cat-list">
+            <li><a href="projects.html#iac-cicd-standardization">IaC + CI/CD Standardization</a> — Terraform & Actions</li>
+          </ul>
+          <a class="btn small ghost" href="projects.html#cat/azure-admin-finops">View all</a>
+        </article>
+
+        <article class="cat">
+          <h3>Optimization &amp; Operations Research</h3>
+          <p class="tease">Mathematical allocation under real-world constraints.</p>
+          <ul class="cat-list">
+            <li><a href="projects.html#supplier-optimization">Supplier Assignment Optimization</a> — lanes, FEU, MQC</li>
+          </ul>
+          <a class="btn small ghost" href="projects.html#cat/optimization-or">View all</a>
+        </article>
+
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="card">
-  <h2>About</h2>
-  <p>
-    I’m a Senior Data Engineer who turns messy, operational data into reliable products—pipelines, KPI layers,
-    and automation—primarily on Azure (Databricks, ADF, Functions, SQL, Key Vault). I optimize for clarity,
-    performance, and maintainability, then measure outcomes in saved hours, dollars, and happier users.
-  </p>
-  <ul class="bullets">
-    <li>Shipped CI/CD + Terraform IaC patterns; standardized environments and cut manual toil</li>
-    <li>Built high-volume ETL (1M+ rows/day) from ADLS → SQL → Power BI for 350+ stakeholders</li>
-    <li>Automation & apps that reduce repetitive work and improve customer experience</li>
-  </ul>
-</section>
-
-
-    <!-- Projects -->
-    <section id="work">
-      <h2>Selected Projects</h2>
-      <div class="grid">
-        <article class="proj">
-          <h3>Supplier Assignment Optimization</h3>
-          <p>Linear programming + business constraints to allocate weekly POs by lane/supplier, balancing FEU targets and MQC.</p>
-          <div class="tags">
-            <span>PySpark</span><span>Optimization</span><span>Delta</span>
-          </div>
-        </article>
-        <article class="proj">
-          <h3>Integrated Customer Data Marketplace</h3>
-          <p>One-stop KPI platform (Responsiveness & Quality). Curated Delta tables, publish views, and docs for analysts.</p>
-          <div class="tags">
-            <span>Databricks</span><span>Delta</span><span>SQL</span>
-          </div>
-        </article>
-        <article class="proj">
-          <h3>Automation Toolkit</h3>
-          <p>Reusable Python wheel: SendGrid emails, SharePoint uploads, Power BI, ADF triggers, Graph API auth.</p>
-          <div class="tags">
-            <span>Python</span><span>Azure</span><span>CI/CD</span>
-          </div>
-        </article>
-      </div>
-    </section>
 
     <!-- Skills -->
     <section id="skills" class="card">
