@@ -119,42 +119,79 @@ function highlightActive() {
 
 // ---------- Toolbar label updaters ----------
 function updateToggleAllLabel() {
-  const acc = Array.from(document.querySelectorAll('.acc'));
+  // Consider only visible groups (those with offsetParent) so labels match the
+  // action which only affects visible groups (e.g., when a search is active).
+  const acc = Array.from(document.querySelectorAll('.acc')).filter(d => d.offsetParent !== null);
   const allOpen = acc.length && acc.every(d => d.open);
+  // Update header chips if present
   const icon  = toggleAllBtn?.querySelector('.chip-icon') || toggleAllBtn?.querySelector('.icon');
   const label = toggleAllBtn?.querySelector('.chip-label') || toggleAllBtn?.querySelector('.label');
-  if (!toggleAllBtn || !icon || !label) return;
+  if (toggleAllBtn && icon && label) {
+    if (allOpen) {
+      toggleAllBtn.setAttribute('aria-pressed','true');
+      toggleAllBtn.title = "Collapse";
+      toggleAllBtn.setAttribute('aria-label','Collapse');
+      icon.textContent  = '▾';
+      label.textContent = 'Collapse';
+    } else {
+      toggleAllBtn.setAttribute('aria-pressed','false');
+      toggleAllBtn.title = "Expand";
+      toggleAllBtn.setAttribute('aria-label','Expand');
+      icon.textContent  = '▸';
+      label.textContent = 'Expand';
+    }
+  }
 
-  if (allOpen) {
-    toggleAllBtn.setAttribute('aria-pressed','true');
-    toggleAllBtn.title = "Collapse all";
-    toggleAllBtn.setAttribute('aria-label','Collapse all');
-    icon.textContent  = '▾▾';
-    label.textContent = 'Collapse all';
-  } else {
-    toggleAllBtn.setAttribute('aria-pressed','false');
-    toggleAllBtn.title = "Expand all";
-    toggleAllBtn.setAttribute('aria-label','Expand all');
-    icon.textContent  = '▸▸';
-    label.textContent = 'Expand all';
+  // Update gear menu labels/icons if present
+  const gearOpenIcon = document.getElementById('gear-open-icon');
+  const gearOpenLabel = document.getElementById('gear-open-label');
+  const gearToggleOpenBtn = document.getElementById('gear-toggle-open');
+  if (gearOpenIcon && gearOpenLabel) {
+    if (allOpen) {
+      gearOpenIcon.textContent = '▾';
+      gearOpenLabel.textContent = 'Collapse';
+      gearToggleOpenBtn?.setAttribute('aria-pressed','true');
+    } else {
+      gearOpenIcon.textContent = '▸';
+      gearOpenLabel.textContent = 'Expand';
+      gearToggleOpenBtn?.setAttribute('aria-pressed','false');
+    }
   }
 }
 
 function updateCompactLabel(on = sidebarEl.classList.contains('compact')) {
-  if (!toggleCompactBtn) return;
-  const icon  = toggleCompactBtn.querySelector('.chip-icon') || toggleCompactBtn.querySelector('.icon');
-  const label = toggleCompactBtn.querySelector('.chip-label') || toggleCompactBtn.querySelector('.label');
-  toggleCompactBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-  toggleCompactBtn.title = on ? "Compact on" : "Compact off";
-  toggleCompactBtn.setAttribute('aria-label', on ? "Compact on" : "Compact off");
-  if (icon) icon.textContent = on ? '◐' : '◻︎';
-  if (label) label.textContent = on ? 'Compact on' : 'Compact off';
+  const icon  = toggleCompactBtn?.querySelector('.chip-icon') || toggleCompactBtn?.querySelector('.icon');
+  const label = toggleCompactBtn?.querySelector('.chip-label') || toggleCompactBtn?.querySelector('.label');
+  if (toggleCompactBtn) {
+    toggleCompactBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    // Show the action on the toggle (what will happen when clicked).
+    toggleCompactBtn.title = on ? "Regular" : "Compact";
+    toggleCompactBtn.setAttribute('aria-label', on ? "Regular" : "Compact");
+    if (icon) icon.textContent = on ? '◻︎' : '≡';
+    if (label) label.textContent = on ? 'Regular' : 'Compact';
+  }
+
+  // Update gear menu compact/regular labels/icons
+  const gearCompactIcon = document.getElementById('gear-compact-icon');
+  const gearCompactLabel = document.getElementById('gear-compact-label');
+  const gearToggleCompactBtn = document.getElementById('gear-toggle-compact');
+  const gearModeLabel = document.getElementById('gear-mode-label');
+  // Always reflect current state in the Mode indicator if present
+  if (gearModeLabel) gearModeLabel.textContent = on ? 'Compact' : 'Regular';
+
+  // Set aria-pressed for the gear toggle button regardless
+  if (gearToggleCompactBtn) gearToggleCompactBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+
+  // Update the gear button icon/label to show the action (what will happen when clicked)
+  if (gearCompactIcon) gearCompactIcon.textContent = on ? '◻︎' : '≡';
+  if (gearCompactLabel) gearCompactLabel.textContent = on ? 'Regular' : 'Compact';
 }
 
 function setCompact(on) {
   sidebarEl.classList.toggle('compact', on);
   localStorage.setItem(LS_COMPACT, on ? "1" : "0");
   updateCompactLabel(on);
+  // Debug logs removed - behavior is stable
 }
 
 // ---------- Build sidebar with accordions ----------
@@ -350,6 +387,82 @@ toggleAllBtn?.addEventListener('click', () => {
 toggleCompactBtn?.addEventListener('click', () => {
   setCompact(!sidebarEl.classList.contains('compact'));
 });
+
+// Gear menu actions (title-level dropdown) - consolidated toggles
+const gearToggleOpenBtn = document.getElementById('gear-toggle-open');
+const gearToggleCompactBtn = document.getElementById('gear-toggle-compact');
+const gearMenu = document.querySelector('.gear-menu');
+
+// Keyboard navigation & accessibility for gear menu
+if (gearMenu) {
+  const menuEl = gearMenu.querySelector('.menu');
+  const items = Array.from(menuEl.querySelectorAll('[role="menuitem"]'));
+
+  // Open/close via keyboard on summary
+  const summary = gearMenu.querySelector('summary');
+  // initialize aria-expanded to match details state
+  summary.setAttribute('aria-expanded', gearMenu.open ? 'true' : 'false');
+  // Keep aria-expanded in sync when the details element toggles
+  gearMenu.addEventListener('toggle', () => {
+    summary.setAttribute('aria-expanded', gearMenu.open ? 'true' : 'false');
+  });
+  summary.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      gearMenu.open = !gearMenu.open;
+      if (gearMenu.open) items[0].focus();
+    }
+    if (e.key === 'ArrowDown') { e.preventDefault(); gearMenu.open = true; items[0].focus(); }
+  });
+
+  // Menu keyboard handling
+  menuEl.addEventListener('keydown', (e) => {
+    const idx = items.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') {
+      e.preventDefault(); items[(idx + 1) % items.length].focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault(); items[(idx - 1 + items.length) % items.length].focus();
+    } else if (e.key === 'Home') { e.preventDefault(); items[0].focus(); }
+    else if (e.key === 'End') { e.preventDefault(); items[items.length - 1].focus(); }
+    else if (e.key === 'Escape' || e.key === 'Esc') { gearMenu.open = false; summary.focus(); }
+    else if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      // Activate the focused menu item
+      e.preventDefault(); document.activeElement.click();
+    }
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!gearMenu.contains(e.target)) {
+      gearMenu.open = false;
+    }
+  });
+}
+
+gearToggleOpenBtn?.addEventListener('click', (e) => {
+  e.preventDefault();
+  // If any visible group is closed, expand all; otherwise collapse all
+  const acc = Array.from(document.querySelectorAll('.acc')).filter(d => d.offsetParent !== null);
+  const allOpen = acc.length && acc.every(d => d.open);
+  const newOpen = !allOpen;
+  acc.forEach(d => d.open = newOpen);
+  // Persist for all categories
+  const om = {};
+  Object.keys(projectsData).forEach(k => om[k] = newOpen);
+  saveOpenMap(om);
+  updateToggleAllLabel();
+  if (gearMenu) gearMenu.open = false;
+});
+
+// Backwards-compatible single toggle (if present)
+gearToggleCompactBtn?.addEventListener('click', (e) => {
+  e.preventDefault();
+  const isCompact = sidebarEl.classList.contains('compact');
+  setCompact(!isCompact);
+  if (gearMenu) gearMenu.open = false;
+});
+
+// (Explicit compact/regular buttons removed - single toggle in HTML is used)
 
 // Reset sidebar states
 resetBtn?.addEventListener('click', () => {

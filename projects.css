@@ -115,6 +115,18 @@
 .sidebar.compact .acc > summary { padding:.4rem .5rem; font-size:.9rem; }
 .sidebar.compact .acc .side-link { padding:.3rem .45rem; }
 .sidebar.compact .acc .side-list { padding:.25rem; }
+/* Explicit font-size for compact side links to avoid unexpected inheritance */
+.sidebar.compact .acc .side-link { font-size: 14px; }
+
+/* Ensure regular (non-compact) font sizes are explicit so toggling can't
+   accidentally inherit a smaller size from elsewhere. */
+.sidebar:not(.compact) .acc > summary { font-size: 15px; }
+.sidebar:not(.compact) .acc .side-link { font-size: 16px; }
+
+/* Small status indicator inside gear menu */
+.gear-menu .menu-status{ display:block; padding:.35rem .5rem; color: var(--muted); font-size: .85rem; }
+.gear-menu .menu-status strong{ color: inherit; font-weight:700; margin-left:.25rem; }
+
 
 
 /* --------------------------
@@ -143,6 +155,8 @@
   border:1px solid color-mix(in oklab, var(--text) 14%, transparent);
   font-weight:600; line-height:1;
 }
+
+.btn-chip .chip-label{ color: inherit; }
 .btn-chip.sm{ font-size:.85rem; padding:.28rem .48rem; }
 .btn-chip:hover{
   background: color-mix(in oklab, var(--card) 70%, var(--brand-ghost) 30%);
@@ -160,7 +174,59 @@
   filter: brightness(0.98);
 }
 .chip-icon{ font-size:.95rem; }
-.chip-label{ font-weight:600; }
+.chip-label{ font-weight:600; color: inherit; }
+
+/* Tools box: gear icon + grouped controls */
+.tools-box{
+  display:flex; align-items:center; gap:.5rem; padding:.35rem; border-radius:10px;
+  background: color-mix(in oklab, var(--card) 88%, transparent 12%);
+  border:1px solid color-mix(in oklab, var(--text) 8%, transparent);
+}
+.tool-gear{ padding:.22rem .32rem; border-radius:8px; font-size:0.85rem;
+  background: color-mix(in oklab, var(--card) 80%, var(--brand-ghost) 20%);
+  border:1px solid color-mix(in oklab, var(--text) 14%, transparent);
+  display:flex; align-items:center; justify-content:center; gap:.4rem; cursor:pointer;
+}
+.tool-gear:focus{ outline:2px solid color-mix(in oklab, var(--brand) 55%, transparent); outline-offset:2px; }
+.tools-group{ display:flex; align-items:center; gap:.35rem; }
+
+/* Vertical menu items for the gear dropdown (placed near title) */
+.title-row { position: relative; }
+
+.gear-menu .menu{
+  display:flex; flex-direction:column; /* reduced width for compact list */
+  min-width:100px; max-width:180px; padding:0; gap:0;
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 60;
+  background: var(--card); border: none; box-shadow: none; border-radius: 6px;
+}
+.gear-menu .menu-item{
+  display:flex; align-items:center; gap:.5rem; padding:.5rem .5rem; background:transparent; width:100%;
+  color: inherit; font-size:.95rem; border: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--text) 6%, transparent);
+}
+.gear-menu .menu-item:hover{ background: color-mix(in oklab, var(--text) 4%, transparent); }
+.gear-menu .menu-item .menu-icon{ width:1.0rem; text-align:center; opacity:.95; padding-right:.45rem; margin-right:.35rem; border-right: none; }
+.gear-menu .menu-label{ flex:1 1 auto; text-align:left; color: inherit; padding-left:.25rem; }
+.gear-menu .menu-divider{ display:none; }
+.gear-menu .menu-item:last-child{ border-bottom: none; }
+
+/* Animation: hidden -> visible with subtle fade+scale */
+.gear-menu .menu{
+  opacity: 0; transform: scale(.98) translateY(-6px); transform-origin: right top; transition: opacity .14s ease, transform .18s cubic-bezier(.2,.9,.2,1);
+  pointer-events: none; /* prevent interaction when closed */
+}
+.gear-menu[open] .menu{
+  opacity: 1; transform: scale(1) translateY(0); pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gear-menu .menu,
+  .gear-menu[open] .menu {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
 
 
 /* If space gets tight, collapse labels to keep one line */
