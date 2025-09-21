@@ -1,0 +1,78 @@
+name: Build sitemap
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    # Prevent infinite loops (skip if the last commit came from this workflow)
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    runs-on: ubuntu-latest
+    env:
+      BASE_URL: https://saipratheekbanda.com  # change if your domain ever changes
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Generate sitemap.xml
+        run: |
+          python - << 'PY'
+          from pathlib import Path
+          from datetime import datetime, timezone
+          import xml.etree.ElementTree as ET
+          import os
+
+          BASE_URL = os.environ.get("BASE_URL", "").rstrip("/")
+          ROOT = Path.cwd()
+
+          # collect files: root HTML + PDFs (recursively) under /assets
+          html_files = sorted(ROOT.glob("*.html"))
+          pdf_files  = sorted((ROOT / "assets").rglob("*.pdf")) if (ROOT / "assets").exists() else []
+
+          files = html_files + pdf_files
+
+          urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+
+          # include homepage explicitly
+          def add_url(path, lastmod=None, changefreq=None, priority=None):
+              url = ET.SubElement(urlset, "url")
+              ET.SubElement(url, "loc").text = f"{BASE_URL}{path}"
+              if lastmod:
+                  ET.SubElement(url, "lastmod").text = lastmod
+              if changefreq:
+                  ET.SubElement(url, "changefreq").text = changefreq
+              if priority:
+                  ET.SubElement(url, "priority").text = priority
+
+          add_url("/", changefreq="weekly", priority="1.0")
+
+          for p in files:
+              rel_path = "/" + str(p.relative_to(ROOT)).replace("\\", "/")
+              ts = datetime.fromtimestamp(p.stat().st_mtime, tz=timezone.utc).strftime("%Y-%m-%d")
+              priority = "0.7" if p.suffix.lower() == ".html" else "0.5"
+              add_url(rel_path, lastmod=ts, changefreq="monthly", priority=priority)
+
+          ET.ElementTree(urlset).write("sitemap.xml", encoding="utf-8", xml_declaration=True)
+          print(f"Wrote sitemap.xml with {len(files)+1} entries")
+          PY
+
+      - name: Commit & push if changed
+        run: |
+          if git diff --quiet sitemap.xml; then
+            echo "No changes to sitemap.xml"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add sitemap.xml
+            git commit -m "chore: update sitemap [skip ci]"
+            git push
+          fi
+
