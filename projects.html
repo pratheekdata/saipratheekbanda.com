@@ -44,9 +44,18 @@
       <div class="sidebar-header">
         <h1>Projects</h1>
         <input id="project-search" type="search" placeholder="Search projects…" aria-label="Search projects" />
+        <div class="side-tools" aria-label="Sidebar controls">
+          <button id="expand-all" class="tool" title="Expand all" aria-label="Expand all">▾▾</button>
+          <button id="collapse-all" class="tool" title="Collapse all" aria-label="Collapse all">▸▸</button>
+          <label class="tool compact-toggle" title="Compact list" aria-label="Compact list">
+            <input type="checkbox" id="compact-toggle" />
+            <span>Compact</span>
+          </label>
+        </div>
       </div>
-      <nav id="side-nav"></nav>
+      <nav id="side-nav" aria-label="Project categories"></nav>
     </aside>
+
 
     <section class="content" id="project-content" tabindex="-1" aria-live="polite">
       <!-- Filled dynamically by projects.js -->
