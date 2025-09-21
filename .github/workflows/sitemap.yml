@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   build:
+    # avoid loops on bot commits
     if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     env:
@@ -35,10 +36,12 @@ jobs:
           from xml.dom import minidom
           import os, xml.etree.ElementTree as ET
 
-          BASE_URL = os.environ.get("BASE_URL","").rstrip("/") or "https://saipratheekbanda.com"
+          BASE_URL = (os.environ.get("BASE_URL") or "https://saipratheekbanda.com").rstrip("/")
           ROOT = Path.cwd()
 
-          html_files = sorted(ROOT.glob("*.html"))
+          # Collect pages: root-level HTML (exclude index.html so home is only "/"),
+          # and all PDFs under /assets (recursively).
+          html_files = sorted(p for p in ROOT.glob("*.html") if p.name.lower() != "index.html")
           pdf_files  = sorted((ROOT / "assets").rglob("*.pdf")) if (ROOT / "assets").exists() else []
           files = html_files + pdf_files
 
@@ -50,15 +53,26 @@ jobs:
               if priority: ET.SubElement(u, "priority").text = priority
 
           urlset = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
-          # Home
-          add_url(urlset, f"{BASE_URL}/", changefreq="weekly", priority="1.0")
 
+          # Use a set to guard against accidental duplicate locs
+          seen = set()
+          def add_unique(loc, **kw):
+              if loc in seen:
+                  return
+              seen.add(loc)
+              add_url(urlset, loc, **kw)
+
+          # Homepage (only "/")
+          add_unique(f"{BASE_URL}/", changefreq="weekly", priority="1.0")
+
+          # Other pages/assets with file mtimes as lastmod
           for p in files:
               rel = "/" + str(p.relative_to(ROOT)).replace("\\", "/")
               ts = datetime.fromtimestamp(p.stat().st_mtime, tz=timezone.utc).strftime("%Y-%m-%d")
               pr = "0.7" if p.suffix.lower()==".html" else "0.5"
-              add_url(urlset, f"{BASE_URL}{rel}", lastmod=ts, changefreq="monthly", priority=pr)
+              add_unique(f"{BASE_URL}{rel}", lastmod=ts, changefreq="monthly", priority=pr)
 
+          # Pretty-print WITH XML declaration
           rough = ET.tostring(urlset, encoding="utf-8")
           pretty = minidom.parseString(rough).toprettyxml(indent="  ", encoding="utf-8")
           Path("sitemap.xml").write_bytes(pretty)
