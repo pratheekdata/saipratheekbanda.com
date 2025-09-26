@@ -7,7 +7,24 @@ const projectsData = {
       summary: "KPI platform with curated Delta tables and publish views.",
       outcomes: ["Consistent KPI layer", "Power BI-ready"],
       stack: ["Databricks","Delta","SQL","PySpark"],
-      details: `<p>Curated layers + publish views to standardize KPI consumption with incremental refresh patterns.</p>`
+      details: `<section class="proj-detail">
+                <h3>Business Overview</h3>
+                <ul class="bullets">
+                  <li><strong>Situation:</strong> Analysts needed a consistent, governed way to consume KPIs across teams.</li>
+                  <li><strong>Task:</strong> Create curated Delta layers and standard publish views so KPIs are analytics-ready and discoverable.</li>
+                  <li><strong>Action:</strong> Built curated tables and documented publish views with incremental-refresh patterns and clear ownership/docs.</li>
+                  <li><strong>Result:</strong> A consistent KPI layer that is Power BI–ready and easier to adopt across stakeholders.</li>
+                </ul>
+
+                <h3>Technical Overview</h3>
+                <div class="tagrow"><span>Databricks</span><span>Delta</span><span>SQL</span><span>PySpark</span></div>
+
+                <h3>What I had to learn</h3>
+                <p>How to structure curated vs. publish layers so incremental refresh and downstream modeling remain simple and governed.</p>
+
+                <h3>Challenge I liked/hated</h3>
+                <p>Liked standardizing patterns that reduced ad-hoc SQL; disliked reconciling legacy KPI definitions during migration.</p>
+              </section>`
     },
     {
       id: "etl-to-insights",
@@ -15,7 +32,26 @@ const projectsData = {
       summary: "Daily 1M+ row ingestion from ADLS → SQL with Power BI delivery.",
       outcomes: ["350+ stakeholders", "Reliable backfills"],
       stack: ["ADF","SQL","Power BI","Databricks"],
-      details: `<p>End-to-end orchestration with robust error handling and lineage.</p>`
+      details: `<section class="proj-detail">
+                <h3>Business Overview</h3>
+                <ul class="bullets">
+                  <li><strong>Situation:</strong> Daily ingestion of 1M+ rows was required from ADLS to downstream analytics.</li>
+                  <li><strong>Task:</strong> Deliver reliable, backfillable pipelines into SQL with Power BI delivery for many consumers.</li>
+                  <li><strong>Action:</strong> Orchestrated end-to-end loads with robust error handling and lineage; designed repeatable backfill paths.</li>
+                  <li><strong>Result:</strong> Stable delivery to <strong>350+ stakeholders</strong> with predictable refreshes and recoverable failures.</li>
+                </ul>
+
+                <h3>Technical Overview</h3>
+                <div class="tagrow"><span>ADF</span><span>SQL</span><span>Power BI</span><span>Databricks</span></div>
+                <p>Flow: <em>ADLS → SQL → Power BI</em>.</p>
+
+                <h3>What I had to learn</h3>
+                <p>Designing repeatable backfill strategies and documenting lineage so handoffs and audits are straightforward.</p>
+
+                <h3>Challenge I liked/hated</h3>
+                <p>Liked building resilient retries/alerts; disliked coordinating schedules around large, late-arriving files.</p>
+              </section>
+              `
     }
   ],
   "Automation & Tools": [
@@ -25,7 +61,25 @@ const projectsData = {
       summary: "Email alerts for shipment exceptions.",
       outcomes: ["~$100k savings", "~400 hours/year"],
       stack: ["Python","Email/API","Logging"],
-      details: `<p>Templated comms, idempotent processing, strong observability.</p>`
+      details: `<section class="proj-detail">
+                  <h3>Business Overview (STAR)</h3>
+                  <ul class="bullets">
+                    <li><strong>Situation:</strong> Shipment exceptions needed timely, templated communications.</li>
+                    <li><strong>Task:</strong> Automate exception emails with reliable processing and observability.</li>
+                    <li><strong>Action:</strong> Implemented idempotent processing, templated messages, and strong logging/metrics.</li>
+                    <li><strong>Result:</strong> ~<strong>$100k</strong> savings and ~<strong>400 hours/year</strong> less manual effort.</li>
+                  </ul>
+
+                  <h3>Technical Overview</h3>
+                  <div class="tagrow"><span>Python</span><span>Email/API</span><span>Logging</span></div>
+
+                  <h3>What I had to learn</h3>
+                  <p>Building reliable idempotency and clear observability so operations can trust automated comms.</p>
+
+                  <h3>Challenge I liked/hated</h3>
+                  <p>Liked turning noisy exception data into clear messages; disliked handling edge-case templates for uncommon routes.</p>
+                </section>
+                `
     },
     {
       id: "pm-kpi-automation",
@@ -33,7 +87,25 @@ const projectsData = {
       summary: "REST-driven sync to render project KPIs.",
       outcomes: ["~40 hours/month saved"],
       stack: ["APIs","Python","Automation"],
-      details: `<p>Asana REST integration with clean transforms and publishing.</p>`
+      details: `<section class="proj-detail">
+                  <h3>Business Overview</h3>
+                  <ul class="bullets">
+                    <li><strong>Situation:</strong> Project KPIs lived in Asana and needed automated, repeatable rendering.</li>
+                    <li><strong>Task:</strong> Sync via REST and publish KPIs with clean transforms.</li>
+                    <li><strong>Action:</strong> Built a REST-driven integration with tidy transformations and publishing.</li>
+                    <li><strong>Result:</strong> ~<strong>40 hours/month</strong> saved and more consistent KPI visibility.</li>
+                  </ul>
+
+                  <h3>Technical Overview</h3>
+                  <div class="tagrow"><span>APIs</span><span>Python</span><span>Automation</span></div>
+                  <p>System of record: <em>Asana (REST API)</em>.</p>
+
+                  <h3>What I had to learn</h3>
+                  <p>Mapping task/project fields into a durable KPI schema that stays stable as boards evolve.</p>
+
+                  <h3>Challenge I liked/hated</h3>
+                  <p>Liked simplifying the transforms; disliked normalizing inconsistent custom fields across teams.</p>
+                </section>`
     }
   ],
   "Microsoft Ecosystem Integrations": [
@@ -43,7 +115,27 @@ const projectsData = {
       summary: "Reusable Python wheel: Graph, SharePoint, SendGrid, Power BI, ADF triggers.",
       outcomes: ["Faster delivery", "Unified auth/retries"],
       stack: ["Python","Graph API","SharePoint","SendGrid","Power BI","ADF"],
-      details: `<p>Consolidated clients that keep codebases DRY and reliable.</p>`
+      details: `<section class="proj-detail">
+                <h3>Business Overview (STAR)</h3>
+                <ul class="bullets">
+                  <li><strong>Situation:</strong> Teams repeatedly re-implemented authentication and client code for Microsoft/communications services.</li>
+                  <li><strong>Task:</strong> Package a reusable toolkit to standardize calls and retries.</li>
+                  <li><strong>Action:</strong> Built a Python wheel covering Graph, SharePoint, SendGrid, Power BI, and ADF triggers with unified auth/retries.</li>
+                  <li><strong>Result:</strong> Faster delivery and DRY code across multiple projects.</li>
+                </ul>
+
+                <h3>Technical Overview</h3>
+                <div class="tagrow">
+                  <span>Python</span><span>Graph API</span><span>SharePoint</span><span>SendGrid</span><span>Power BI</span><span>ADF</span>
+                </div>
+
+                <h3>What I had to learn</h3>
+                <p>Unifying authentication flows across services in a way that stays simple for downstream users.</p>
+
+                <h3>Challenge I liked/hated</h3>
+                <p>Liked making one clean client for many services; disliked chasing small differences between service endpoints.</p>
+              </section>
+              `
     }
   ],
   "Azure Platform Admin & FinOps": [
@@ -53,7 +145,25 @@ const projectsData = {
       summary: "Terraform patterns and Actions for consistent environments.",
       outcomes: ["Reduced manual setup", "~$200k annualized savings"],
       stack: ["Terraform","GitHub Actions","Azure"],
-      details: `<p>Codified infra patterns, secrets mgmt, and deployment workflows.</p>`
+      details: `<section class="proj-detail">
+                  <h3>Business Overview (STAR)</h3>
+                  <ul class="bullets">
+                    <li><strong>Situation:</strong> Environment setup varied across teams and slowed delivery.</li>
+                    <li><strong>Task:</strong> Codify infra patterns and delivery workflows.</li>
+                    <li><strong>Action:</strong> Created Terraform patterns and GitHub Actions workflows with secrets management.</li>
+                    <li><strong>Result:</strong> Reduced manual setup and ~<strong>$200k</strong> annualized savings.</li>
+                  </ul>
+
+                  <h3>Technical Overview</h3>
+                  <div class="tagrow"><span>Terraform</span><span>GitHub Actions</span><span>Azure</span></div>
+
+                  <h3>What I had to learn</h3>
+                  <p>Designing reusable IaC patterns and pipelines that stay simple for teams adopting them.</p>
+
+                  <h3>Challenge I liked/hated</h3>
+                  <p>Liked turning common setup into templates; disliked untangling one-off environment differences.</p>
+                </section>
+                `
     }
   ],
   "Optimization & Operations Research": [
@@ -63,7 +173,25 @@ const projectsData = {
       summary: "LP with business rules for lane/supplier allocation (FEU, MQC).",
       outcomes: ["Respects targets", "Auditable weekly runs"],
       stack: ["PySpark","Optimization","Delta","Python"],
-      details: `<p>Allocates POs across valid lanes honoring FEU targets and MQC ceilings.</p>`
+      details: `<section class="proj-detail">
+                  <h3>Business Overview (STAR)</h3>
+                  <ul class="bullets">
+                    <li><strong>Situation:</strong> Weekly POs had to be allocated across lanes/suppliers with FEU and MQC constraints.</li>
+                    <li><strong>Task:</strong> Build an optimization that respects business rules and produces auditable allocations.</li>
+                    <li><strong>Action:</strong> Implemented linear programming with constraints for FEU (Forty-foot Equivalent Unit) targets and MQC (Minimum Quantity Commitment) ceilings.</li>
+                    <li><strong>Result:</strong> Assignments that meet targets and run reliably on a weekly cadence with clear auditability.</li>
+                  </ul>
+
+                  <h3>Technical Overview</h3>
+                  <div class="tagrow"><span>PySpark</span><span>Optimization</span><span>Delta</span><span>Python</span></div>
+
+                  <h3>What I had to learn</h3>
+                  <p>Expressing business commitments as constraints and validating feasible solutions against historical allocations.</p>
+
+                  <h3>Challenge I liked/hated</h3>
+                  <p>Liked translating rules into a solvable model; disliked handling edge cases when targets conflicted with MQC limits.</p>
+                </section>
+                `
     }
   ],
   "Analytics & Insights": []
@@ -482,4 +610,15 @@ resetBtn?.addEventListener('click', () => {
   buildSidebar();
   updateCompactLabel(savedCompact);
   route();
+})();
+
+
+// Open all categories on first load
+(function openAllOnce(){
+  const KEY = "proj-acc-open";
+  if (!localStorage.getItem(KEY)) {
+    const all = {};
+    Object.keys(projectsData).forEach(k => all[k] = true);
+    localStorage.setItem(KEY, JSON.stringify(all));
+  }
 })();

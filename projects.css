@@ -242,3 +242,33 @@
   .btn-chip:active{ transform:none; }
 }
 
+/* Sleek sidebar (remove boxes/borders) */
+.sidebar{ background:transparent; border:0; padding:0; }
+.sidebar-header{ background:transparent; border:0; padding:0 0 .5rem; }
+
+.acc{ background:transparent; border:0; margin:.25rem 0; }
+.acc > summary{ padding:.4rem .25rem; border-radius:8px; font-weight:700; }
+.acc[open] > summary{ background:transparent; }
+.acc .count{ display:none; }
+.acc .side-list{ padding:.2rem 0 .2rem .25rem; }
+
+.side-link{ padding:.35rem .45rem; border-radius:6px; }
+.side-link:hover, .side-link.active{
+  background: color-mix(in oklab, var(--brand-ghost) 55%, transparent);
+}
+
+/* gentle divider between groups (optional) */
+.side-group + .side-group{
+  border-top:1px solid color-mix(in oklab, var(--text) 8%, transparent);
+  margin-top:.5rem; padding-top:.5rem;
+}
+
+.proj-detail h3{ margin-top:.8rem; margin-bottom:.35rem; }
+.proj-detail .bullets{ padding-left:1.1rem; }
+.proj-detail .tagrow{ display:flex; flex-wrap:wrap; gap:.35rem; margin:.25rem 0 .4rem; }
+.proj-detail .tagrow span{
+  padding:.18rem .4rem; border-radius:999px;
+  background: color-mix(in oklab, var(--brand-ghost) 65%, var(--card) 35%);
+  border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  font-weight:600; font-size:.85rem;
+}
