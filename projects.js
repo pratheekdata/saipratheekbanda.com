@@ -1,73 +1,446 @@
 // ---------- Data (edit your projects here) ----------
 const projectsData = {
+  // 1) COMBINED here under Data Platforms & Pipelines
   "Data Platforms & Pipelines": [
     {
       id: "icdm-marketplace",
       name: "Integrated Customer Data Marketplace",
-      summary: "KPI platform with curated Delta tables and publish views.",
-      outcomes: ["Consistent KPI layer", "Power BI-ready"],
-      stack: ["Databricks","Delta","SQL","PySpark"],
-      details: `<p>Curated layers + publish views to standardize KPI consumption with incremental refresh patterns.</p>`
+      summary: "Central repository of supply-chain programs/products and common KPIs for contract tracking & monthly/query reporting.",
+      outcomes: ["Consistent KPI views", "Lower ad-hoc reporting"],
+      stack: ["Databricks","Delta","SQL","PySpark","ER modeling"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Program Management in supply chain needed a central place for products, customer programs (by vertical), and common KPIs to check contract performance and run monthly/query reports.</li>
+    <li><strong>Task:</strong> Organize customers → colleagues → products/programs with consistent KPI definitions.</li>
+    <li><strong>Action:</strong> Built a curated marketplace of KPI views and <strong>deployed an entity-relationship (ER) model</strong> to maintain relationships between customers, colleagues, products, and KPI metrics.</li>
+    <li><strong>Result:</strong> A go-to marketplace for program KPIs that reduces ad-hoc reporting and increases consistency.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Databricks</span><span>Delta</span><span>SQL</span><span>PySpark</span><span>ER model</span></div>
+  <p>Curated vs publish layers documented; incremental refresh patterns; program master data (customer → vertical → program).</p>
+
+  <h3>What I had to learn</h3>
+  <p>Modeling program/colleague/product relationships in an ER model that keeps KPI views reusable and governed.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Turning scattered program knowledge into a consistent catalog. <strong>Hated:</strong> Normalizing KPI names/thresholds that varied by program.</p>
+</section>`
     },
     {
-      id: "etl-to-insights",
-      name: "High-Volume ETL to Insights",
-      summary: "Daily 1M+ row ingestion from ADLS → SQL with Power BI delivery.",
-      outcomes: ["350+ stakeholders", "Reliable backfills"],
-      stack: ["ADF","SQL","Power BI","Databricks"],
-      details: `<p>End-to-end orchestration with robust error handling and lineage.</p>`
+      id: "team-performance-dashboard",   // merged: was Team Performance + High-Volume ETL
+      name: "Team Performance Platform (ETL → Dashboard, CX — NAM)",
+      summary: "Daily ETL of Salesforce + Cisco Webex Contact Center into a Power BI dashboard for >300 colleagues, manager→leadership rollups.",
+      outcomes: ["Backfillable pipelines","Clear lineage","Leadership rollups"],
+      stack: ["ADLS","ADF","SQL","Databricks","Power BI","Salesforce","Cisco Webex Contact Center"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> CX performance across North America (NAM) needed a single, consistent view for >300 colleagues across managers → Head of CX.</li>
+    <li><strong>Task:</strong> Build reliable daily ingestion (1M+ rows/day) and deliver a dashboard covering cases, customer feedback, CSAT, and phone activity.</li>
+    <li><strong>Action:</strong> Orchestrated ADLS → SQL loads with ADF/Databricks, established lineage/backfills, and surfaced KPIs in Power BI combining Salesforce data with Cisco Webex Contact Center metrics.</li>
+    <li><strong>Result:</strong> Stable refreshes for <strong>350+ stakeholders</strong>, predictable backfills, and leadership rollups for day-to-day reviews.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>ADLS</span><span>ADF</span><span>Databricks</span><span>SQL</span><span>Power BI</span><span>Salesforce</span><span>Cisco Webex Contact Center</span></div>
+  <p>Flow: <em>Azure Data Lake Storage → ADF/Databricks → SQL → Power BI</em>. KPIs: cases, feedback, <strong>CSAT</strong> (Customer Satisfaction), phone accessibility/adherence.</p>
+
+  <h3>What I had to learn</h3>
+  <p>Designing repeatable backfill strategies and aligning KPI definitions across Salesforce objects and telephony metrics.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Resilient retries/alerts and clean org rollups. <strong>Hated:</strong> Reconciling identifiers between Salesforce users and telephony agents; scheduling around late files.</p>
+</section>`
     }
   ],
-  "Automation & Tools": [
+
+  // 3 & 4) Rename toolkit, move under Automations, add Power Apps Data Archive, keep others here
+  "Automations": [
+    {
+      id: "automation-toolkit",
+      name: "Microsoft Ecosystem Integrations Toolkit (Python)",
+      summary: "Reusable wheel for SharePoint, Power BI (500+ dashboards), SendGrid, Azure SQL helpers; centralized auth/retries.",
+      outcomes: ["Faster delivery","DRY integrations","Central dashboard monitoring"],
+      stack: ["Python","SharePoint","Power BI","SendGrid","Azure SQL"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Team repeatedly needed Microsoft service access, email, and SQL operations for reports/Power Apps.</li>
+    <li><strong>Task:</strong> Package a reusable toolkit to standardize common operations.</li>
+    <li><strong>Action:</strong> Implemented modules for SharePoint (publish/archival), Power BI (<strong>500+ dashboards</strong> status & post-pipeline refresh triggers), SendGrid (emails), and SQL DB manager (read/write/update; stored procedure triggers).</li>
+    <li><strong>Result:</strong> Faster delivery and much less repeated scripting.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Python</span><span>SharePoint</span><span>Power BI</span><span>SendGrid</span><span>Azure SQL</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Packaging Microsoft integrations and SQL helpers for simple adoption with unified authentication and retries.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> One import to handle repetitive tasks. <strong>Hated:</strong> Small API/auth differences across services.</p>
+</section>`
+    },
+    {
+      id: "powerapps-data-archive",
+      name: "Power Apps Data Archive",
+      summary: "Archival pipeline for Power Apps data using SharePoint for publishing and long-term storage.",
+      outcomes: ["Safer retention","Reliable publishing"],
+      stack: ["SharePoint","Power Apps","Python/Automation"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Reports and Power Apps needed a dependable archival path for app data.</li>
+    <li><strong>Task:</strong> Create a process to publish artifacts and archive app records safely.</li>
+    <li><strong>Action:</strong> Implemented archival to SharePoint (Lists/files) and automated publishing hooks.</li>
+    <li><strong>Result:</strong> Repeatable retention with straightforward retrieval for reporting.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>SharePoint</span><span>Power Apps</span><span>Python/Automation</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Balancing SharePoint list/file storage patterns for retrieval speed vs. governance.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Simple restore paths. <strong>Hated:</strong> Handling schema tweaks from evolving apps.</p>
+</section>`
+    },
     {
       id: "exception-notifier",
       name: "Exception Notifier (North America)",
-      summary: "Email alerts for shipment exceptions.",
-      outcomes: ["~$100k savings", "~400 hours/year"],
+      summary: "Automated exception emails with observability; ~$100k savings and ~400 hours/year saved.",
+      outcomes: ["~$100k savings","~400 hours/year saved"],
       stack: ["Python","Email/API","Logging"],
-      details: `<p>Templated comms, idempotent processing, strong observability.</p>`
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Shipment exceptions needed timely, templated communications.</li>
+    <li><strong>Task:</strong> Automate exception emails with reliable processing and observability.</li>
+    <li><strong>Action:</strong> Implemented idempotent processing, templated messages, and strong logging/metrics.</li>
+    <li><strong>Result:</strong> ~<strong>$100k</strong> savings and ~<strong>400 hours/year</strong> less manual effort.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Python</span><span>Email/API</span><span>Logging</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Reliable idempotency and clear observability so operations trust automated comms.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Turning noisy exception data into clear messages. <strong>Hated:</strong> Edge-case templates for uncommon routes.</p>
+</section>`
     },
     {
       id: "pm-kpi-automation",
       name: "PM KPI Automation (Asana)",
-      summary: "REST-driven sync to render project KPIs.",
+      summary: "REST-driven sync to render project KPIs; ~40 hours/month saved.",
       outcomes: ["~40 hours/month saved"],
       stack: ["APIs","Python","Automation"],
-      details: `<p>Asana REST integration with clean transforms and publishing.</p>`
-    }
-  ],
-  "Microsoft Ecosystem Integrations": [
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Project KPIs lived in Asana and needed automated, repeatable rendering.</li>
+    <li><strong>Task:</strong> Sync via REST and publish KPIs with clean transforms.</li>
+    <li><strong>Action:</strong> Built a REST-driven integration with tidy transformations and publishing.</li>
+    <li><strong>Result:</strong> ~<strong>40 hours/month</strong> saved and more consistent KPI visibility.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>APIs</span><span>Python</span><span>Automation</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Mapping task/project fields into a durable KPI schema that stays stable as boards evolve.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Simplifying the transforms. <strong>Hated:</strong> Normalizing inconsistent custom fields across teams.</p>
+</section>`
+    },
     {
-      id: "automation-toolkit",
-      name: "Automation Toolkit",
-      summary: "Reusable Python wheel: Graph, SharePoint, SendGrid, Power BI, ADF triggers.",
-      outcomes: ["Faster delivery", "Unified auth/retries"],
-      stack: ["Python","Graph API","SharePoint","SendGrid","Power BI","ADF"],
-      details: `<p>Consolidated clients that keep codebases DRY and reliable.</p>`
+      id: "cisco-webex-contact-center-api",
+      name: "Cisco Webex Contact Center API (GraphQL)",
+      summary: "Python package using GraphQL to extract agent stats and phone accessibility/adherence.",
+      outcomes: ["Reliable metrics retrieval"],
+      stack: ["Python","GraphQL","Cisco Webex Contact Center"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Needed automated access to Cisco Webex Contact Center for agent stats and company phone accessibility/adherence.</li>
+    <li><strong>Task:</strong> Build a Python package that queries the API and outputs metrics for tracking.</li>
+    <li><strong>Action:</strong> Wrote a package that uses GraphQL queries to extract agent stats and accessibility/adherence measures.</li>
+    <li><strong>Result:</strong> Reliable retrieval of phone/agent performance data for reporting.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Python</span><span>GraphQL</span><span>Cisco Webex Contact Center</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Writing and organizing GraphQL queries to fetch the right shapes/fields for performance tracking.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Precise metrics via GraphQL. <strong>Hated:</strong> Schema/field changes that impact queries.</p>
+</section>`
     }
   ],
+
   "Azure Platform Admin & FinOps": [
     {
       id: "iac-cicd-standardization",
-      name: "Azure IaC + CI/CD Standardization",
-      summary: "Terraform patterns and Actions for consistent environments.",
-      outcomes: ["Reduced manual setup", "~$200k annualized savings"],
-      stack: ["Terraform","GitHub Actions","Azure"],
-      details: `<p>Codified infra patterns, secrets mgmt, and deployment workflows.</p>`
+      name: "Azure Infrastructure as Code (IaC) + CI/CD",
+      summary: "Dev & prod environments in HCL with pipelines managing all resource changes.",
+      outcomes: ["Repeatable environments"],
+      stack: ["HCL (Terraform style)","Azure","CI/CD"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Needed consistent dev and production environments managed as code.</li>
+    <li><strong>Task:</strong> Create environments using HashiCorp Configuration Language (HCL) following IaC standards and manage changes via pipelines.</li>
+    <li><strong>Action:</strong> Wrote IaC for dev/prod; wired CI/CD so all resource changes move through code review and deployment.</li>
+    <li><strong>Result:</strong> Repeatable environments with changes tracked and deployed through CI/CD.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>HCL</span><span>Azure</span><span>CI/CD</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Structuring environment code to keep parity between dev and prod while staying easy to evolve.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Code-reviewable infra changes. <strong>Hated:</strong> Cleaning up drift from prior manual edits.</p>
+</section>`
+    },
+    {
+      id: "github-workflows",
+      name: "GitHub Workflows (Databricks & ADF)",
+      summary: "CI/CD from dev → main to promote Databricks and ADF changes into production.",
+      outcomes: ["Consistent releases"],
+      stack: ["GitHub Actions","Azure Databricks","Azure Data Factory"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Needed a reliable path to move code from development to production for Azure Databricks and Azure Data Factory (ADF).</li>
+    <li><strong>Task:</strong> Use GitHub workflows to create CI/CD from <code>dev</code> branch to <code>main</code>.</li>
+    <li><strong>Action:</strong> Implemented GitHub workflows to build/test and promote Databricks/ADF changes from dev to main for production.</li>
+    <li><strong>Result:</strong> A consistent release path from development to production.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>GitHub Actions</span><span>Azure Databricks</span><span>Azure Data Factory</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Sequencing Databricks and ADF promotions cleanly between branches.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Clear, repeatable releases. <strong>Hated:</strong> Timing between pipeline runs and dependent artifacts.</p>
+</section>`
     }
   ],
+
   "Optimization & Operations Research": [
     {
       id: "supplier-optimization",
       name: "Supplier Assignment Optimization",
-      summary: "LP with business rules for lane/supplier allocation (FEU, MQC).",
-      outcomes: ["Respects targets", "Auditable weekly runs"],
+      summary: "Linear programming for weekly PO allocation by lane/supplier under FEU targets and MQC ceilings.",
+      outcomes: ["Auditable runs","Targets respected"],
       stack: ["PySpark","Optimization","Delta","Python"],
-      details: `<p>Allocates POs across valid lanes honoring FEU targets and MQC ceilings.</p>`
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Weekly purchase orders (POs) had to be allocated across lanes/suppliers with FEU and MQC constraints.</li>
+    <li><strong>Task:</strong> Build an optimization that respects business rules and produces auditable allocations.</li>
+    <li><strong>Action:</strong> Implemented linear programming with constraints for <strong>FEU</strong> (Forty-foot Equivalent Unit) targets and <strong>MQC</strong> (Minimum Quantity Commitment) ceilings.</li>
+    <li><strong>Result:</strong> Assignments that meet targets and run reliably on a weekly cadence with clear auditability.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>PySpark</span><span>Optimization</span><span>Delta</span><span>Python</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Expressing business commitments as constraints and validating feasible solutions against historical allocations.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Translating rules into a solvable model. <strong>Hated:</strong> Edge cases when targets conflict with MQC limits.</p>
+</section>`
     }
   ],
-  "Analytics & Insights": []
+
+  // 2) Move Customer Temperature here + existing analytics project
+  "Analytics & Insights": [
+    {
+      id: "customer-temperature",
+      name: "Customer Temperature (Daily CX Insights)",
+      summary: "Daily CX feedback app with topic clustering over free-text to surface themes and trends.",
+      outcomes: ["Proactive risk spotting","Theme-level rollups"],
+      stack: ["App (feedback capture)","Topic clustering","Analytics"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Leadership needed a daily read on “customer temperature” from frontline CX colleagues.</li>
+    <li><strong>Task:</strong> Capture daily feedback/comments and analyze trends to proactively spot risks and highlights.</li>
+    <li><strong>Action:</strong> Built an app to collect daily feedback; analyzed time trends and used <strong>topic clustering</strong> on free-text to surface themes (“what’s going well” / “issues”).</li>
+    <li><strong>Result:</strong> A year-round journey view for leadership/managers, plus theme rollups that remove the need to read every comment.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Feedback App</span><span>Topic clustering</span><span>Trend analytics</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Operationalizing clustering over short, noisy free-text to produce meaningful themes.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Turning qualitative feedback into actionable themes. <strong>Hated:</strong> Very short comments that reduce separability.</p>
+</section>`
+    },
+    {
+      id: "powerbi-optimizations",
+      name: "Power BI Optimizations (Confidential Shipments)",
+      summary: "Multiple dataflows + rewired transforms cut refresh time by ~50% for a confidential/military shipment dashboard.",
+      outcomes: ["~50% faster refresh"],
+      stack: ["Power BI","Dataflows","Transform tuning"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> A critical Power BI dashboard for confidential/military shipments held too much data and refreshed slowly.</li>
+    <li><strong>Task:</strong> Re-architect refresh and transformations to cut refresh time.</li>
+    <li><strong>Action:</strong> Used multiple dataflows and rewired transformations to reduce latency.</li>
+    <li><strong>Result:</strong> <strong>~50% faster</strong> refresh while preserving required operational detail.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Power BI</span><span>Dataflows</span><span>Transform tuning</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Restructuring dataflows/transforms to minimize refresh time without losing fidelity.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Making a slow dashboard operationally reliable. <strong>Hated:</strong> Balancing confidentiality constraints with diagnostic visibility.</p>
+</section>`
+    }
+  ],
+
+  // 6) Placeholders (per your descriptions)
+  "Backlog / Placeholders": [
+    {
+      id: "capacity-management",
+      name: "Capacity Management",
+      summary: "Every ~3 hours data load to manage capacity as part of kean process.",
+      outcomes: [],
+      stack: [],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Capacity needs periodic refresh.</li>
+    <li><strong>Task:</strong> Quick load every ~3 hours to manage capacity (kean process).</li>
+    <li><strong>Action:</strong> TBD</li>
+    <li><strong>Result:</strong> TBD</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <p>TBD</p>
+
+  <h3>What I had to learn</h3>
+  <p>TBD</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p>TBD</p>
+</section>`
+    },
+    {
+      id: "scm-forward-forecasting",
+      name: "SCM Forward Looking Forecasting",
+      summary: "Forward-looking forecasting in supply chain management (placeholder).",
+      outcomes: [],
+      stack: [],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> TBD</li>
+    <li><strong>Task:</strong> TBD</li>
+    <li><strong>Action:</strong> TBD</li>
+    <li><strong>Result:</strong> TBD</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <p>TBD</p>
+
+  <h3>What I had to learn</h3>
+  <p>TBD</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p>TBD</p>
+</section>`
+    },
+    {
+      id: "financial-forecasting",
+      name: "Financial Forecasting Analysis",
+      summary: "Financial forecasting analysis (placeholder).",
+      outcomes: [],
+      stack: [],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> TBD</li>
+    <li><strong>Task:</strong> TBD</li>
+    <li><strong>Action:</strong> TBD</li>
+    <li><strong>Result:</strong> TBD</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <p>TBD</p>
+
+  <h3>What I had to learn</h3>
+  <p>TBD</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p>TBD</p>
+</section>`
+    },
+    {
+      id: "org-maintenance-automation",
+      name: "Org Maintenance Automation",
+      summary: "Automation for organizational maintenance (placeholder).",
+      outcomes: [],
+      stack: [],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> TBD</li>
+    <li><strong>Task:</strong> TBD</li>
+    <li><strong>Action:</strong> TBD</li>
+    <li><strong>Result:</strong> TBD</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <p>TBD</p>
+
+  <h3>What I had to learn</h3>
+  <p>TBD</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p>TBD</p>
+</section>`
+    }
+  ]
 };
+
 
 // ---------- Elements ----------
 const sideNavEl        = document.getElementById('side-nav');
@@ -482,4 +855,15 @@ resetBtn?.addEventListener('click', () => {
   buildSidebar();
   updateCompactLabel(savedCompact);
   route();
+})();
+
+
+// Open all categories on first load
+(function openAllOnce(){
+  const KEY = "proj-acc-open";
+  if (!localStorage.getItem(KEY)) {
+    const all = {};
+    Object.keys(projectsData).forEach(k => all[k] = true);
+    localStorage.setItem(KEY, JSON.stringify(all));
+  }
 })();
