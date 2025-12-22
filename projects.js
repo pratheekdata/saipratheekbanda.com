@@ -10,7 +10,7 @@ const projectsData = {
       stack: ["Databricks","Delta","SQL","PySpark","ER modeling"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Program Management in supply chain needed a central place for products, customer programs (by vertical), and common KPIs to check contract performance and run monthly/query reports.</li>
     <li><strong>Task:</strong> Organize customers → colleagues → products/programs with consistent KPI definitions.</li>
@@ -37,7 +37,7 @@ const projectsData = {
       stack: ["ADLS","ADF","SQL","Databricks","Power BI","Salesforce","Cisco Webex Contact Center"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> CX performance across North America (NAM) needed a single, consistent view for >300 colleagues across managers → Head of CX.</li>
     <li><strong>Task:</strong> Build reliable daily ingestion (1M+ rows/day) and deliver a dashboard covering cases, customer feedback, CSAT, and phone activity.</li>
@@ -68,7 +68,7 @@ const projectsData = {
       stack: ["Python","SharePoint","Power BI","SendGrid","Azure SQL"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Team repeatedly needed Microsoft service access, email, and SQL operations for reports/Power Apps.</li>
     <li><strong>Task:</strong> Package a reusable toolkit to standardize common operations.</li>
@@ -94,7 +94,7 @@ const projectsData = {
       stack: ["SharePoint","Power Apps","Python/Automation"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Reports and Power Apps needed a dependable archival path for app data.</li>
     <li><strong>Task:</strong> Create a process to publish artifacts and archive app records safely.</li>
@@ -120,7 +120,7 @@ const projectsData = {
       stack: ["Python","Email/API","Logging"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Shipment exceptions needed timely, templated communications.</li>
     <li><strong>Task:</strong> Automate exception emails with reliable processing and observability.</li>
@@ -146,7 +146,7 @@ const projectsData = {
       stack: ["APIs","Python","Automation"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Project KPIs lived in Asana and needed automated, repeatable rendering.</li>
     <li><strong>Task:</strong> Sync via REST and publish KPIs with clean transforms.</li>
@@ -172,7 +172,7 @@ const projectsData = {
       stack: ["Python","GraphQL","Cisco Webex Contact Center"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Needed automated access to Cisco Webex Contact Center for agent stats and company phone accessibility/adherence.</li>
     <li><strong>Task:</strong> Build a Python package that queries the API and outputs metrics for tracking.</li>
@@ -201,7 +201,7 @@ const projectsData = {
       stack: ["HCL (Terraform style)","Azure","CI/CD"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Needed consistent dev and production environments managed as code.</li>
     <li><strong>Task:</strong> Create environments using HashiCorp Configuration Language (HCL) following IaC standards and manage changes via pipelines.</li>
@@ -227,7 +227,7 @@ const projectsData = {
       stack: ["GitHub Actions","Azure Databricks","Azure Data Factory"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Needed a reliable path to move code from development to production for Azure Databricks and Azure Data Factory (ADF).</li>
     <li><strong>Task:</strong> Use GitHub workflows to create CI/CD from <code>dev</code> branch to <code>main</code>.</li>
@@ -256,7 +256,7 @@ const projectsData = {
       stack: ["PySpark","Optimization","Delta","Python"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Weekly purchase orders (POs) had to be allocated across lanes/suppliers with FEU and MQC constraints.</li>
     <li><strong>Task:</strong> Build an optimization that respects business rules and produces auditable allocations.</li>
@@ -286,7 +286,7 @@ const projectsData = {
       stack: ["App (feedback capture)","Topic clustering","Analytics"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Leadership needed a daily read on “customer temperature” from frontline CX colleagues.</li>
     <li><strong>Task:</strong> Capture daily feedback/comments and analyze trends to proactively spot risks and highlights.</li>
@@ -312,7 +312,7 @@ const projectsData = {
       stack: ["Power BI","Dataflows","Transform tuning"],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> A critical Power BI dashboard for confidential/military shipments held too much data and refreshed slowly.</li>
     <li><strong>Task:</strong> Re-architect refresh and transformations to cut refresh time.</li>
@@ -342,7 +342,7 @@ const projectsData = {
       stack: [],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> Capacity needs periodic refresh.</li>
     <li><strong>Task:</strong> Quick load every ~3 hours to manage capacity (kean process).</li>
@@ -368,7 +368,7 @@ const projectsData = {
       stack: [],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> TBD</li>
     <li><strong>Task:</strong> TBD</li>
@@ -394,7 +394,7 @@ const projectsData = {
       stack: [],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> TBD</li>
     <li><strong>Task:</strong> TBD</li>
@@ -420,7 +420,7 @@ const projectsData = {
       stack: [],
       details: `
 <section class="proj-detail">
-  <h3>Business Overview (STAR)</h3>
+  <h3>Business Overview</h3>
   <ul class="bullets">
     <li><strong>Situation:</strong> TBD</li>
     <li><strong>Task:</strong> TBD</li>
