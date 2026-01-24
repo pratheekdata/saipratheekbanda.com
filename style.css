@@ -102,6 +102,7 @@ a:hover { text-decoration: underline; }
 #work h2 { margin-bottom: .75rem; }
 .featured { margin: 1.25rem 0 1.75rem; }
 .featured h3 { margin: 0 0 .75rem; font-size: 1.1rem; }
+.featured-grid { gap: 1.25rem; }
 .featured-grid .featured-card { position: relative; }
 .featured-card .badge {
   display: inline-flex;
@@ -117,6 +118,11 @@ a:hover { text-decoration: underline; }
 .featured-card p { margin: 0 0 .75rem; color: var(--muted); }
 .text-link { color: var(--brand); font-weight: 600; text-decoration: none; }
 .text-link:hover { text-decoration: underline; }
+.projects-divider {
+  height: 1px;
+  background: color-mix(in oklab, var(--text) 12%, transparent);
+  margin: 1.25rem 0 1.5rem;
+}
 .grid {
   display: grid; gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -189,7 +195,7 @@ a:hover { text-decoration: underline; }
 .cat-list { margin: .4rem 0 .8rem; padding-left: 1.1rem; }
 .cat-list li { margin: .25rem 0; }
 
-.insights { margin-top: 2rem; }
+.insights { margin: 1.25rem 0 2rem; }
 .section-head {
   display: flex;
   align-items: center;
