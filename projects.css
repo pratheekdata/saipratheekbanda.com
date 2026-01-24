@@ -43,24 +43,31 @@
   align-self: start;
   max-height: calc(100vh - 96px);
   overflow: auto;
-  padding: 1rem;
-  border-radius: calc(var(--radius) + 6px);
+  padding: 1.1rem;
+  border-radius: calc(var(--radius) + 10px);
   border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
-  background: color-mix(in oklab, var(--card) 78%, transparent);
-  box-shadow: 0 18px 38px color-mix(in oklab, var(--text) 10%, transparent);
-  backdrop-filter: blur(12px);
+  background: linear-gradient(180deg,
+      color-mix(in oklab, var(--card) 88%, transparent),
+      color-mix(in oklab, var(--card) 70%, transparent));
+  box-shadow:
+    0 18px 38px color-mix(in oklab, var(--text) 10%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--text) 6%, transparent);
+  backdrop-filter: blur(14px);
 }
 
 .sidebar-header {
   position: sticky;
   top: 0;
-  padding-bottom: .75rem;
-  margin-bottom: .6rem;
-  border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  background: color-mix(in oklab, var(--card) 84%, transparent);
-  backdrop-filter: blur(12px);
+  z-index: 2;
+  padding-bottom: .85rem;
+  margin-bottom: .75rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  background: linear-gradient(180deg,
+      color-mix(in oklab, var(--card) 95%, transparent),
+      color-mix(in oklab, var(--card) 80%, transparent));
+  backdrop-filter: blur(16px);
 }
-.sidebar h1 { font-size: 1.15rem; margin: .25rem 0; }
+.sidebar h1 { font-size: 1.1rem; margin: .25rem 0; letter-spacing: .02em; }
 
 .head-row {
   display: flex;
@@ -69,19 +76,27 @@
   gap: .5rem;
 }
 
-.search-wrap { margin-top: .6rem; }
+.search-wrap { margin-top: .65rem; }
 
 #project-search {
   width: 100%;
-  padding: .6rem .75rem;
+  padding: .65rem .85rem;
   border-radius: 999px;
-  border: 0;
-  background: color-mix(in oklab, var(--card) 82%, transparent);
-  box-shadow: 0 12px 24px color-mix(in oklab, var(--text) 10%, transparent);
+  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  background: color-mix(in oklab, var(--card) 92%, transparent);
+  color: var(--text);
+  box-shadow:
+    0 10px 22px color-mix(in oklab, var(--text) 10%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--text) 6%, transparent);
+}
+#project-search::placeholder { color: color-mix(in oklab, var(--muted) 80%, transparent); }
+#project-search:focus {
+  outline: 2px solid color-mix(in oklab, var(--brand) 45%, transparent);
+  outline-offset: 2px;
 }
 
-#side-nav { margin-top: .75rem; }
-.side-group { margin: .75rem 0; }
+#side-nav { margin-top: .65rem; }
+.side-group { margin: .7rem 0; }
 .side-group h3 {
   font-size: .95rem; margin: .5rem 0 .25rem; color: var(--muted);
   text-transform: uppercase; letter-spacing: .04em;
@@ -104,18 +119,27 @@
    Uses <details>/<summary>
    -------------------------- */
 .acc {
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   margin: .35rem 0;
-  background: transparent;
+  background: color-mix(in oklab, var(--card) 78%, transparent);
+  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
 }
 .acc[open] > summary {
-  background: color-mix(in oklab, var(--brand-ghost) 40%, transparent);
+  background: color-mix(in oklab, var(--brand-ghost) 45%, transparent);
 }
 
 .acc > summary {
-  list-style: none; display:flex; align-items:center; justify-content:space-between;
-  padding:.55rem .65rem; cursor:pointer; user-select:none; font-weight:700; font-size:.95rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .6rem .7rem;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  font-size: .93rem;
+  letter-spacing: .01em;
 }
 .acc > summary::-webkit-details-marker { display:none; }
 
@@ -125,27 +149,34 @@
 .acc .count { display: none; }
 
 /* Project list inside an accordion */
-.acc .side-list { list-style:none; margin:0; padding:.2rem 0 .25rem .3rem; }
+.acc .side-list { list-style:none; margin:0; padding:.25rem .35rem .45rem; }
 .acc .side-link {
-  display:block; padding:.4rem .55rem; border-radius:8px; text-decoration:none; color:inherit;
+  display: block;
+  padding: .45rem .6rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
 }
-.acc .side-link:hover { background: color-mix(in oklab, var(--brand-ghost) 60%, transparent); }
-.acc .side-link.active { background: color-mix(in oklab, var(--brand-ghost) 60%, transparent); font-weight:600; }
+.acc .side-link:hover { background: color-mix(in oklab, var(--brand-ghost) 50%, transparent); }
+.acc .side-link.active {
+  background: color-mix(in oklab, var(--brand-ghost) 65%, transparent);
+  font-weight: 600;
+}
 
 /* Hide groups with no visible items (search) */
 .side-group.hidden { display:none; }
 
 /* Compact mode tweaks for the sidebar */
-.sidebar.compact .acc > summary { padding:.4rem .5rem; font-size:.9rem; }
+.sidebar.compact .acc > summary { padding:.45rem .55rem; font-size:.88rem; }
 .sidebar.compact .acc .side-link { padding:.3rem .45rem; }
-.sidebar.compact .acc .side-list { padding:.2rem 0 .2rem .25rem; }
+.sidebar.compact .acc .side-list { padding:.2rem .25rem .35rem; }
 /* Explicit font-size for compact side links to avoid unexpected inheritance */
 .sidebar.compact .acc .side-link { font-size: 14px; }
 
 /* Ensure regular (non-compact) font sizes are explicit so toggling can't
    accidentally inherit a smaller size from elsewhere. */
 .sidebar:not(.compact) .acc > summary { font-size: 15px; }
-.sidebar:not(.compact) .acc .side-link { font-size: 16px; }
+.sidebar:not(.compact) .acc .side-link { font-size: 15.5px; }
 
 /* Small status indicator inside gear menu */
 .gear-menu .menu-status{ display:block; padding:.35rem .5rem; color: var(--muted); font-size: .85rem; }
