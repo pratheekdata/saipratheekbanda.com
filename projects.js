@@ -1,6 +1,6 @@
 // ---------- Data (edit your projects here) ----------
 const projectsData = {
-  "Data Engineering and Anlytics": [
+  "Data Engineering": [
     {
       id: "icdm-marketplace",
       name: "Integrated Customer Data Marketplace",
@@ -109,7 +109,7 @@ const projectsData = {
     }
   ],
 
-  "Automation and Tools": [
+  "Automation & Data Apps": [
     {
       id: "automation-toolkit",
       name: "Microsoft Ecosystem Integrations Toolkit (Python)",
@@ -268,62 +268,7 @@ const projectsData = {
     }
   ],
 
-  "Cloud Engineering": [
-    {
-      id: "iac-cicd-standardization",
-      name: "Azure Infrastructure as Code (IaC) + CI/CD",
-      summary: "Dev & prod environments in HCL with pipelines managing all resource changes.",
-      outcomes: ["Repeatable environments"],
-      stack: ["HCL (Terraform style)","Azure","CI/CD"],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Needed consistent dev and production environments managed as code.</li>
-    <li><strong>Task:</strong> Create environments using HashiCorp Configuration Language (HCL) following IaC standards and manage changes via pipelines.</li>
-    <li><strong>Action:</strong> Wrote IaC for dev/prod; wired CI/CD so all resource changes move through code review and deployment.</li>
-    <li><strong>Result:</strong> Repeatable environments with changes tracked and deployed through CI/CD.</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <div class="tagrow"><span>HCL</span><span>Azure</span><span>CI/CD</span></div>
-
-  <h3>What I had to learn</h3>
-  <p>Structuring environment code to keep parity between dev and prod while staying easy to evolve.</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Code-reviewable infra changes. <strong>Hated:</strong> Cleaning up drift from prior manual edits.</p>
-</section>`
-    },
-    {
-      id: "github-workflows",
-      name: "GitHub Workflows (Databricks & ADF)",
-      summary: "CI/CD from dev → main to promote Databricks and ADF changes into production.",
-      outcomes: ["Consistent releases"],
-      stack: ["GitHub Actions","Azure Databricks","Azure Data Factory"],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Needed a reliable path to move code from development to production for Azure Databricks and Azure Data Factory (ADF).</li>
-    <li><strong>Task:</strong> Use GitHub workflows to create CI/CD from <code>dev</code> branch to <code>main</code>.</li>
-    <li><strong>Action:</strong> Implemented GitHub workflows to build/test and promote Databricks/ADF changes from dev to main for production.</li>
-    <li><strong>Result:</strong> A consistent release path from development to production.</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <div class="tagrow"><span>GitHub Actions</span><span>Azure Databricks</span><span>Azure Data Factory</span></div>
-
-  <h3>What I had to learn</h3>
-  <p>Sequencing Databricks and ADF promotions cleanly between branches.</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Clear, repeatable releases. <strong>Hated:</strong> Timing between pipeline runs and dependent artifacts.</p>
-</section>`
-    }
-  ],
-
-  "AI": [
+  "Machine Learning and AI": [
     {
       id: "customer-temperature",
       name: "Customer Temperature (Daily CX Insights)",
@@ -426,6 +371,61 @@ const projectsData = {
 
   <h3>Challenge I liked/hated</h3>
   <p>TBD</p>
+</section>`
+    }
+  ],
+
+  "Cloud Engineering": [
+    {
+      id: "iac-cicd-standardization",
+      name: "Azure Infrastructure as Code (IaC) + CI/CD",
+      summary: "Dev & prod environments in HCL with pipelines managing all resource changes.",
+      outcomes: ["Repeatable environments"],
+      stack: ["HCL (Terraform style)","Azure","CI/CD"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Needed consistent dev and production environments managed as code.</li>
+    <li><strong>Task:</strong> Create environments using HashiCorp Configuration Language (HCL) following IaC standards and manage changes via pipelines.</li>
+    <li><strong>Action:</strong> Wrote IaC for dev/prod; wired CI/CD so all resource changes move through code review and deployment.</li>
+    <li><strong>Result:</strong> Repeatable environments with changes tracked and deployed through CI/CD.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>HCL</span><span>Azure</span><span>CI/CD</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Structuring environment code to keep parity between dev and prod while staying easy to evolve.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Code-reviewable infra changes. <strong>Hated:</strong> Cleaning up drift from prior manual edits.</p>
+</section>`
+    },
+    {
+      id: "github-workflows",
+      name: "GitHub Workflows (Databricks & ADF)",
+      summary: "CI/CD from dev → main to promote Databricks and ADF changes into production.",
+      outcomes: ["Consistent releases"],
+      stack: ["GitHub Actions","Azure Databricks","Azure Data Factory"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Needed a reliable path to move code from development to production for Azure Databricks and Azure Data Factory (ADF).</li>
+    <li><strong>Task:</strong> Use GitHub workflows to create CI/CD from <code>dev</code> branch to <code>main</code>.</li>
+    <li><strong>Action:</strong> Implemented GitHub workflows to build/test and promote Databricks/ADF changes from dev to main for production.</li>
+    <li><strong>Result:</strong> A consistent release path from development to production.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>GitHub Actions</span><span>Azure Databricks</span><span>Azure Data Factory</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Sequencing Databricks and ADF promotions cleanly between branches.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Clear, repeatable releases. <strong>Hated:</strong> Timing between pipeline runs and dependent artifacts.</p>
 </section>`
     }
   ]
