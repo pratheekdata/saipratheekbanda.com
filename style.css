@@ -100,6 +100,23 @@ a:hover { text-decoration: underline; }
 
 #work { padding: 2rem 0; }
 #work h2 { margin-bottom: .75rem; }
+.featured { margin: 1.25rem 0 1.75rem; }
+.featured h3 { margin: 0 0 .75rem; font-size: 1.1rem; }
+.featured-grid .featured-card { position: relative; }
+.featured-card .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--brand-ghost) 70%, transparent);
+  font-size: .75rem;
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+.featured-card h4 { margin: 0 0 .4rem; font-size: 1rem; }
+.featured-card p { margin: 0 0 .75rem; color: var(--muted); }
+.text-link { color: var(--brand); font-weight: 600; text-decoration: none; }
+.text-link:hover { text-decoration: underline; }
 .grid {
   display: grid; gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -124,6 +141,36 @@ a:hover { text-decoration: underline; }
 
 .contact { text-align: center; padding: 2rem 0 2.5rem; }
 .contact .ctas { justify-content: center; }
+.contact-form {
+  max-width: 720px;
+  margin: 1rem auto 1.5rem;
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+}
+.contact-form label {
+  display: grid;
+  gap: .5rem;
+  font-weight: 600;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: .65rem .8rem;
+  border-radius: 12px;
+  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  background: var(--card);
+  color: inherit;
+  font: inherit;
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: var(--muted); }
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid color-mix(in oklab, var(--brand) 40%, transparent);
+  outline-offset: 2px;
+}
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
 
 .footer { border-top: 1px solid color-mix(in oklab, var(--text) 12%, transparent); padding: 1.25rem 0; text-align: center; color: var(--muted); }
 
@@ -141,6 +188,32 @@ a:hover { text-decoration: underline; }
 .cats .tease { color: var(--muted); margin: .25rem 0 .5rem; }
 .cat-list { margin: .4rem 0 .8rem; padding-left: 1.1rem; }
 .cat-list li { margin: .25rem 0; }
+
+.insights { margin-top: 2rem; }
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.section-head .muted { color: var(--muted); margin: .25rem 0 0; }
+.insight-card {
+  background: var(--card);
+  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+.insight-card h3 { margin: 0 0 .4rem; font-size: 1rem; }
+.insight-card p { margin: 0 0 .75rem; color: var(--muted); }
+.insight-tag {
+  display: inline-flex;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 600;
+  background: color-mix(in oklab, var(--brand-ghost) 70%, transparent);
+}
 
 
 /* 3-position theme switch */

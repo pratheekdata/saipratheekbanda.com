@@ -178,6 +178,30 @@
         <a class="btn small" href="projects.html">View all projects</a>
       </div>
 
+      <div class="featured">
+        <h3>Featured highlights</h3>
+        <div class="grid featured-grid">
+          <article class="proj featured-card">
+            <div class="badge">Data Engineering</div>
+            <h4>Integrated Customer Data Marketplace</h4>
+            <p>Central KPI marketplace with governed definitions and ER modeling for supply-chain programs.</p>
+            <a class="text-link" href="projects.html#icdm-marketplace">View project</a>
+          </article>
+          <article class="proj featured-card">
+            <div class="badge">Automation &amp; Data Apps</div>
+            <h4>Exception Notifier (North America)</h4>
+            <p>Automated exception communications with observability, saving ~$100k and 400 hours/year.</p>
+            <a class="text-link" href="projects.html#exception-notifier">View project</a>
+          </article>
+          <article class="proj featured-card">
+            <div class="badge">Cloud Engineering</div>
+            <h4>Azure IaC + CI/CD</h4>
+            <p>Repeatable infrastructure and deployment pipelines for dev and production environments.</p>
+            <a class="text-link" href="projects.html#iac-cicd-standardization">View project</a>
+          </article>
+        </div>
+      </div>
+
       <!-- Category cards that deep-link into projects.html -->
       <div class="grid cats">
 
@@ -224,6 +248,33 @@
       </div>
     </section>
 
+    <section id="insights" class="card insights">
+      <div class="section-head">
+        <div>
+          <h2>Insights</h2>
+          <p class="muted">Notes on data products, automation, and AI experiments.</p>
+        </div>
+        <a class="btn small ghost" href="projects.html">Browse all</a>
+      </div>
+      <div class="grid insights-grid">
+        <article class="insight-card">
+          <h3>Forecasting confidence bands</h3>
+          <p>How I validate forward-looking models with interpretable confidence ranges.</p>
+          <span class="insight-tag">Machine Learning &amp; AI</span>
+        </article>
+        <article class="insight-card">
+          <h3>Operational KPI alignment</h3>
+          <p>Keeping KPI definitions consistent across teams, dashboards, and pipelines.</p>
+          <span class="insight-tag">Data Engineering</span>
+        </article>
+        <article class="insight-card">
+          <h3>Automation playbooks</h3>
+          <p>Reusable workflows that remove manual work and scale across teams.</p>
+          <span class="insight-tag">Automation &amp; Data Apps</span>
+        </article>
+      </div>
+    </section>
+
 
     <!-- Skills -->
     <section id="skills" class="card">
@@ -239,6 +290,23 @@
     <section id="contact" class="contact">
       <h2>Contact</h2>
       <p>Open to interesting problems and high-impact builds.</p>
+      <form class="contact-form" action="mailto:saipratheek.banda@gmail.com" method="post" enctype="text/plain">
+        <div class="form-row">
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Your name" required>
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@email.com" required>
+          </label>
+        </div>
+        <label>
+          Message
+          <textarea name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+        </label>
+        <button class="btn" type="submit">Send message</button>
+      </form>
       <div class="ctas">
         <a class="btn" href="mailto:saipratheek.banda@gmail.com">Email</a>
         <a class="btn ghost" href="https://github.com/pratheekdata" target="_blank" rel="noopener">GitHub</a>
