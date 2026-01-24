@@ -1,7 +1,6 @@
 // ---------- Data (edit your projects here) ----------
 const projectsData = {
-  // 1) COMBINED here under Data Platforms & Pipelines
-  "Data Platforms & Pipelines": [
+  "Data Engineering and Analytics": [
     {
       id: "icdm-marketplace",
       name: "Integrated Customer Data Marketplace",
@@ -55,11 +54,62 @@ const projectsData = {
   <h3>Challenge I liked/hated</h3>
   <p><strong>Liked:</strong> Resilient retries/alerts and clean org rollups. <strong>Hated:</strong> Reconciling identifiers between Salesforce users and telephony agents; scheduling around late files.</p>
 </section>`
+    },
+    {
+      id: "powerbi-optimizations",
+      name: "Power BI Optimizations (Confidential Shipments)",
+      summary: "Multiple dataflows + rewired transforms cut refresh time by ~50% for a confidential/military shipment dashboard.",
+      outcomes: ["~50% faster refresh"],
+      stack: ["Power BI","Dataflows","Transform tuning"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> A critical Power BI dashboard for confidential/military shipments held too much data and refreshed slowly.</li>
+    <li><strong>Task:</strong> Re-architect refresh and transformations to cut refresh time.</li>
+    <li><strong>Action:</strong> Used multiple dataflows and rewired transformations to reduce latency.</li>
+    <li><strong>Result:</strong> <strong>~50% faster</strong> refresh while preserving required operational detail.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Power BI</span><span>Dataflows</span><span>Transform tuning</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Restructuring dataflows/transforms to minimize refresh time without losing fidelity.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Making a slow dashboard operationally reliable. <strong>Hated:</strong> Balancing confidentiality constraints with diagnostic visibility.</p>
+</section>`
+    },
+    {
+      id: "capacity-management",
+      name: "Capacity Management",
+      summary: "Every ~3 hours data load to manage capacity as part of kean process.",
+      outcomes: [],
+      stack: [],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Capacity needs periodic refresh.</li>
+    <li><strong>Task:</strong> Quick load every ~3 hours to manage capacity (kean process).</li>
+    <li><strong>Action:</strong> TBD</li>
+    <li><strong>Result:</strong> TBD</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <p>TBD</p>
+
+  <h3>What I had to learn</h3>
+  <p>TBD</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p>TBD</p>
+</section>`
     }
   ],
 
-  // 3 & 4) Rename toolkit, move under Automations, add Power Apps Data Archive, keep others here
-  "Automations": [
+  "Automation and Tools": [
     {
       id: "automation-toolkit",
       name: "Microsoft Ecosystem Integrations Toolkit (Python)",
@@ -189,10 +239,36 @@ const projectsData = {
   <h3>Challenge I liked/hated</h3>
   <p><strong>Liked:</strong> Precise metrics via GraphQL. <strong>Hated:</strong> Schema/field changes that impact queries.</p>
 </section>`
+    },
+    {
+      id: "org-maintenance-automation",
+      name: "Org Maintenance Automation",
+      summary: "Automation for organizational maintenance (placeholder).",
+      outcomes: [],
+      stack: [],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> TBD</li>
+    <li><strong>Task:</strong> TBD</li>
+    <li><strong>Action:</strong> TBD</li>
+    <li><strong>Result:</strong> TBD</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <p>TBD</p>
+
+  <h3>What I had to learn</h3>
+  <p>TBD</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p>TBD</p>
+</section>`
     }
   ],
 
-  "Azure Platform Admin & FinOps": [
+  "Cloud Engineering": [
     {
       id: "iac-cicd-standardization",
       name: "Azure Infrastructure as Code (IaC) + CI/CD",
@@ -247,37 +323,7 @@ const projectsData = {
     }
   ],
 
-  "Optimization & Operations Research": [
-    {
-      id: "supplier-optimization",
-      name: "Supplier Assignment Optimization",
-      summary: "Linear programming for weekly PO allocation by lane/supplier under FEU targets and MQC ceilings.",
-      outcomes: ["Auditable runs","Targets respected"],
-      stack: ["PySpark","Optimization","Delta","Python"],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Weekly purchase orders (POs) had to be allocated across lanes/suppliers with FEU and MQC constraints.</li>
-    <li><strong>Task:</strong> Build an optimization that respects business rules and produces auditable allocations.</li>
-    <li><strong>Action:</strong> Implemented linear programming with constraints for <strong>FEU</strong> (Forty-foot Equivalent Unit) targets and <strong>MQC</strong> (Minimum Quantity Commitment) ceilings.</li>
-    <li><strong>Result:</strong> Assignments that meet targets and run reliably on a weekly cadence with clear auditability.</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <div class="tagrow"><span>PySpark</span><span>Optimization</span><span>Delta</span><span>Python</span></div>
-
-  <h3>What I had to learn</h3>
-  <p>Expressing business commitments as constraints and validating feasible solutions against historical allocations.</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Translating rules into a solvable model. <strong>Hated:</strong> Edge cases when targets conflict with MQC limits.</p>
-</section>`
-    }
-  ],
-
-  // 2) Move Customer Temperature here + existing analytics project
-  "Analytics & Insights": [
+  "AI": [
     {
       id: "customer-temperature",
       name: "Customer Temperature (Daily CX Insights)",
@@ -305,59 +351,29 @@ const projectsData = {
 </section>`
     },
     {
-      id: "powerbi-optimizations",
-      name: "Power BI Optimizations (Confidential Shipments)",
-      summary: "Multiple dataflows + rewired transforms cut refresh time by ~50% for a confidential/military shipment dashboard.",
-      outcomes: ["~50% faster refresh"],
-      stack: ["Power BI","Dataflows","Transform tuning"],
+      id: "supplier-optimization",
+      name: "Supplier Assignment Optimization",
+      summary: "Linear programming for weekly PO allocation by lane/supplier under FEU targets and MQC ceilings.",
+      outcomes: ["Auditable runs","Targets respected"],
+      stack: ["PySpark","Optimization","Delta","Python"],
       details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> A critical Power BI dashboard for confidential/military shipments held too much data and refreshed slowly.</li>
-    <li><strong>Task:</strong> Re-architect refresh and transformations to cut refresh time.</li>
-    <li><strong>Action:</strong> Used multiple dataflows and rewired transformations to reduce latency.</li>
-    <li><strong>Result:</strong> <strong>~50% faster</strong> refresh while preserving required operational detail.</li>
+    <li><strong>Situation:</strong> Weekly purchase orders (POs) had to be allocated across lanes/suppliers with FEU and MQC constraints.</li>
+    <li><strong>Task:</strong> Build an optimization that respects business rules and produces auditable allocations.</li>
+    <li><strong>Action:</strong> Implemented linear programming with constraints for <strong>FEU</strong> (Forty-foot Equivalent Unit) targets and <strong>MQC</strong> (Minimum Quantity Commitment) ceilings.</li>
+    <li><strong>Result:</strong> Assignments that meet targets and run reliably on a weekly cadence with clear auditability.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>Power BI</span><span>Dataflows</span><span>Transform tuning</span></div>
+  <div class="tagrow"><span>PySpark</span><span>Optimization</span><span>Delta</span><span>Python</span></div>
 
   <h3>What I had to learn</h3>
-  <p>Restructuring dataflows/transforms to minimize refresh time without losing fidelity.</p>
+  <p>Expressing business commitments as constraints and validating feasible solutions against historical allocations.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Making a slow dashboard operationally reliable. <strong>Hated:</strong> Balancing confidentiality constraints with diagnostic visibility.</p>
-</section>`
-    }
-  ],
-
-  // 6) Placeholders (per your descriptions)
-  "Backlog / Placeholders": [
-    {
-      id: "capacity-management",
-      name: "Capacity Management",
-      summary: "Every ~3 hours data load to manage capacity as part of kean process.",
-      outcomes: [],
-      stack: [],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Capacity needs periodic refresh.</li>
-    <li><strong>Task:</strong> Quick load every ~3 hours to manage capacity (kean process).</li>
-    <li><strong>Action:</strong> TBD</li>
-    <li><strong>Result:</strong> TBD</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <p>TBD</p>
-
-  <h3>What I had to learn</h3>
-  <p>TBD</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p>TBD</p>
+  <p><strong>Liked:</strong> Translating rules into a solvable model. <strong>Hated:</strong> Edge cases when targets conflict with MQC limits.</p>
 </section>`
     },
     {
@@ -390,32 +406,6 @@ const projectsData = {
       id: "financial-forecasting",
       name: "Financial Forecasting Analysis",
       summary: "Financial forecasting analysis (placeholder).",
-      outcomes: [],
-      stack: [],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> TBD</li>
-    <li><strong>Task:</strong> TBD</li>
-    <li><strong>Action:</strong> TBD</li>
-    <li><strong>Result:</strong> TBD</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <p>TBD</p>
-
-  <h3>What I had to learn</h3>
-  <p>TBD</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p>TBD</p>
-</section>`
-    },
-    {
-      id: "org-maintenance-automation",
-      name: "Org Maintenance Automation",
-      summary: "Automation for organizational maintenance (placeholder).",
       outcomes: [],
       stack: [],
       details: `
