@@ -1,6 +1,6 @@
 // ---------- Data (edit your projects here) ----------
 const projectsData = {
-  "Data Engineering and Analytics": [
+  "Data Engineering and Anlytics": [
     {
       id: "icdm-marketplace",
       name: "Integrated Customer Data Marketplace",

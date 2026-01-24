@@ -38,24 +38,27 @@
    Sidebar container + header
    -------------------------- */
 .sidebar {
-  position: sticky; top: 72px;
+  position: sticky;
+  top: 72px;
   align-self: start;
-  background: var(--card);
-  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  border-radius: var(--radius);
-  padding: .9rem;
   max-height: calc(100vh - 96px);
   overflow: auto;
+  padding: 1rem;
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  background: color-mix(in oklab, var(--card) 78%, transparent);
+  box-shadow: 0 18px 38px color-mix(in oklab, var(--text) 10%, transparent);
+  backdrop-filter: blur(12px);
 }
 
 .sidebar-header {
   position: sticky;
   top: 0;
-  background: color-mix(in oklab, var(--card) 80%, transparent);
-  backdrop-filter: blur(10px);
   padding-bottom: .75rem;
-  margin-bottom: .5rem;
+  margin-bottom: .6rem;
   border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  background: color-mix(in oklab, var(--card) 84%, transparent);
+  backdrop-filter: blur(12px);
 }
 .sidebar h1 { font-size: 1.15rem; margin: .25rem 0; }
 
@@ -73,8 +76,8 @@
   padding: .6rem .75rem;
   border-radius: 999px;
   border: 0;
-  background: color-mix(in oklab, var(--card) 75%, transparent);
-  box-shadow: 0 10px 24px color-mix(in oklab, var(--text) 8%, transparent);
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+  box-shadow: 0 12px 24px color-mix(in oklab, var(--text) 10%, transparent);
 }
 
 #side-nav { margin-top: .75rem; }
@@ -101,11 +104,14 @@
    Uses <details>/<summary>
    -------------------------- */
 .acc {
-  border-radius: 10px; overflow: hidden;
-  border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  background: var(--card); margin:.5rem 0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: .35rem 0;
+  background: transparent;
 }
-.acc[open] { border-color: color-mix(in oklab, var(--text) 18%, transparent); }
+.acc[open] > summary {
+  background: color-mix(in oklab, var(--brand-ghost) 40%, transparent);
+}
 
 .acc > summary {
   list-style: none; display:flex; align-items:center; justify-content:space-between;
@@ -116,18 +122,15 @@
 .acc .chev { transition: transform .18s ease; margin-right:.4rem; opacity:.8; }
 .acc[open] .chev { transform: rotate(90deg); }
 
-.acc .count {
-  font-size:.8rem; font-weight:700; padding:.1rem .45rem; border-radius:999px;
-  background: var(--brand-ghost);
-}
+.acc .count { display: none; }
 
 /* Project list inside an accordion */
-.acc .side-list { list-style:none; margin:0; padding:.4rem; }
+.acc .side-list { list-style:none; margin:0; padding:.2rem 0 .25rem .3rem; }
 .acc .side-link {
   display:block; padding:.4rem .55rem; border-radius:8px; text-decoration:none; color:inherit;
 }
-.acc .side-link:hover { background: var(--brand-ghost); }
-.acc .side-link.active { background: var(--brand-ghost); font-weight:600; }
+.acc .side-link:hover { background: color-mix(in oklab, var(--brand-ghost) 60%, transparent); }
+.acc .side-link.active { background: color-mix(in oklab, var(--brand-ghost) 60%, transparent); font-weight:600; }
 
 /* Hide groups with no visible items (search) */
 .side-group.hidden { display:none; }
@@ -135,7 +138,7 @@
 /* Compact mode tweaks for the sidebar */
 .sidebar.compact .acc > summary { padding:.4rem .5rem; font-size:.9rem; }
 .sidebar.compact .acc .side-link { padding:.3rem .45rem; }
-.sidebar.compact .acc .side-list { padding:.25rem; }
+.sidebar.compact .acc .side-list { padding:.2rem 0 .2rem .25rem; }
 /* Explicit font-size for compact side links to avoid unexpected inheritance */
 .sidebar.compact .acc .side-link { font-size: 14px; }
 
@@ -261,45 +264,6 @@
 @media (prefers-reduced-motion: reduce){
   .btn-chip{ transition: none; }
   .btn-chip:active{ transform:none; }
-}
-
-/* Sleek sidebar improvements */
-.sidebar{
-  background: color-mix(in oklab, var(--card) 72%, transparent);
-  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
-  border-radius: calc(var(--radius) + 4px);
-  padding: .9rem;
-  box-shadow: 0 18px 38px color-mix(in oklab, var(--text) 10%, transparent);
-  backdrop-filter: blur(12px);
-}
-.sidebar-header{
-  border-bottom: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  padding-bottom: .65rem;
-}
-
-.acc{
-  background: transparent;
-  border: 0;
-  margin: .3rem 0;
-}
-.acc > summary{
-  padding: .45rem .35rem;
-  border-radius: 8px;
-  font-weight: 700;
-}
-.acc[open] > summary{
-  background: color-mix(in oklab, var(--brand-ghost) 40%, transparent);
-}
-.acc .count{ display: none; }
-.acc .side-list{ padding: .2rem 0 .25rem .3rem; }
-
-.side-link{
-  padding: .38rem .5rem;
-  border-radius: 8px;
-}
-.side-link:hover,
-.side-link.active{
-  background: color-mix(in oklab, var(--brand-ghost) 60%, transparent);
 }
 
 /* gentle divider between groups */
