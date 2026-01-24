@@ -15,11 +15,13 @@
 }
 
 .content {
-  background: var(--card);
-  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  border: 0;
+  border-radius: calc(var(--radius) + 6px);
+  padding: 1.25rem 1.5rem;
   min-height: 60vh;
+  box-shadow: 0 18px 40px color-mix(in oklab, var(--text) 10%, transparent);
+  backdrop-filter: blur(8px);
 }
 
 .content h2 { margin-top: .2rem; margin-bottom: .4rem; }
@@ -52,8 +54,12 @@
 .sidebar h1 { font-size: 1.15rem; margin: .25rem 0 .5rem; }
 
 #project-search {
-  width: 100%; padding: .55rem .7rem; border-radius: 10px;
-  border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
+  width: 100%;
+  padding: .6rem .75rem;
+  border-radius: 999px;
+  border: 0;
+  background: color-mix(in oklab, var(--card) 75%, transparent);
+  box-shadow: 0 10px 24px color-mix(in oklab, var(--text) 8%, transparent);
 }
 
 #side-nav { margin-top: .75rem; }
