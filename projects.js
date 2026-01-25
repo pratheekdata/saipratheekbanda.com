@@ -1,7 +1,6 @@
 // ---------- Data (edit your projects here) ----------
 const projectsData = {
-  // 1) COMBINED here under Data Platforms & Pipelines
-  "Data Platforms & Pipelines": [
+  "Data Engineering": [
     {
       id: "icdm-marketplace",
       name: "Integrated Customer Data Marketplace",
@@ -55,11 +54,62 @@ const projectsData = {
   <h3>Challenge I liked/hated</h3>
   <p><strong>Liked:</strong> Resilient retries/alerts and clean org rollups. <strong>Hated:</strong> Reconciling identifiers between Salesforce users and telephony agents; scheduling around late files.</p>
 </section>`
+    },
+    {
+      id: "powerbi-optimizations",
+      name: "Power BI Optimizations (Confidential Shipments)",
+      summary: "Multiple dataflows + rewired transforms cut refresh time by ~50% for a confidential/military shipment dashboard.",
+      outcomes: ["~50% faster refresh"],
+      stack: ["Power BI","Dataflows","Transform tuning"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> A critical Power BI dashboard for confidential/military shipments held too much data and refreshed slowly.</li>
+    <li><strong>Task:</strong> Re-architect refresh and transformations to cut refresh time.</li>
+    <li><strong>Action:</strong> Used multiple dataflows and rewired transformations to reduce latency.</li>
+    <li><strong>Result:</strong> <strong>~50% faster</strong> refresh while preserving required operational detail.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Power BI</span><span>Dataflows</span><span>Transform tuning</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Restructuring dataflows/transforms to minimize refresh time without losing fidelity.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Making a slow dashboard operationally reliable. <strong>Hated:</strong> Balancing confidentiality constraints with diagnostic visibility.</p>
+</section>`
+    },
+    {
+      id: "capacity-management",
+      name: "Capacity Management",
+      summary: "Every ~3 hours data load to manage capacity as part of kean process.",
+      outcomes: [],
+      stack: [],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Capacity needs periodic refresh.</li>
+    <li><strong>Task:</strong> Quick load every ~3 hours to manage capacity (kean process).</li>
+    <li><strong>Action:</strong> TBD</li>
+    <li><strong>Result:</strong> TBD</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <p>TBD</p>
+
+  <h3>What I had to learn</h3>
+  <p>TBD</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p>TBD</p>
+</section>`
     }
   ],
 
-  // 3 & 4) Rename toolkit, move under Automations, add Power Apps Data Archive, keep others here
-  "Automations": [
+  "Automation & Data Apps": [
     {
       id: "automation-toolkit",
       name: "Microsoft Ecosystem Integrations Toolkit (Python)",
@@ -189,95 +239,36 @@ const projectsData = {
   <h3>Challenge I liked/hated</h3>
   <p><strong>Liked:</strong> Precise metrics via GraphQL. <strong>Hated:</strong> Schema/field changes that impact queries.</p>
 </section>`
-    }
-  ],
-
-  "Azure Platform Admin & FinOps": [
-    {
-      id: "iac-cicd-standardization",
-      name: "Azure Infrastructure as Code (IaC) + CI/CD",
-      summary: "Dev & prod environments in HCL with pipelines managing all resource changes.",
-      outcomes: ["Repeatable environments"],
-      stack: ["HCL (Terraform style)","Azure","CI/CD"],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Needed consistent dev and production environments managed as code.</li>
-    <li><strong>Task:</strong> Create environments using HashiCorp Configuration Language (HCL) following IaC standards and manage changes via pipelines.</li>
-    <li><strong>Action:</strong> Wrote IaC for dev/prod; wired CI/CD so all resource changes move through code review and deployment.</li>
-    <li><strong>Result:</strong> Repeatable environments with changes tracked and deployed through CI/CD.</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <div class="tagrow"><span>HCL</span><span>Azure</span><span>CI/CD</span></div>
-
-  <h3>What I had to learn</h3>
-  <p>Structuring environment code to keep parity between dev and prod while staying easy to evolve.</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Code-reviewable infra changes. <strong>Hated:</strong> Cleaning up drift from prior manual edits.</p>
-</section>`
     },
     {
-      id: "github-workflows",
-      name: "GitHub Workflows (Databricks & ADF)",
-      summary: "CI/CD from dev → main to promote Databricks and ADF changes into production.",
-      outcomes: ["Consistent releases"],
-      stack: ["GitHub Actions","Azure Databricks","Azure Data Factory"],
+      id: "org-maintenance-automation",
+      name: "Org Maintenance Automation",
+      summary: "Automation for organizational maintenance (placeholder).",
+      outcomes: [],
+      stack: [],
       details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> Needed a reliable path to move code from development to production for Azure Databricks and Azure Data Factory (ADF).</li>
-    <li><strong>Task:</strong> Use GitHub workflows to create CI/CD from <code>dev</code> branch to <code>main</code>.</li>
-    <li><strong>Action:</strong> Implemented GitHub workflows to build/test and promote Databricks/ADF changes from dev to main for production.</li>
-    <li><strong>Result:</strong> A consistent release path from development to production.</li>
+    <li><strong>Situation:</strong> TBD</li>
+    <li><strong>Task:</strong> TBD</li>
+    <li><strong>Action:</strong> TBD</li>
+    <li><strong>Result:</strong> TBD</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>GitHub Actions</span><span>Azure Databricks</span><span>Azure Data Factory</span></div>
+  <p>TBD</p>
 
   <h3>What I had to learn</h3>
-  <p>Sequencing Databricks and ADF promotions cleanly between branches.</p>
+  <p>TBD</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Clear, repeatable releases. <strong>Hated:</strong> Timing between pipeline runs and dependent artifacts.</p>
+  <p>TBD</p>
 </section>`
     }
   ],
 
-  "Optimization & Operations Research": [
-    {
-      id: "supplier-optimization",
-      name: "Supplier Assignment Optimization",
-      summary: "Linear programming for weekly PO allocation by lane/supplier under FEU targets and MQC ceilings.",
-      outcomes: ["Auditable runs","Targets respected"],
-      stack: ["PySpark","Optimization","Delta","Python"],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Weekly purchase orders (POs) had to be allocated across lanes/suppliers with FEU and MQC constraints.</li>
-    <li><strong>Task:</strong> Build an optimization that respects business rules and produces auditable allocations.</li>
-    <li><strong>Action:</strong> Implemented linear programming with constraints for <strong>FEU</strong> (Forty-foot Equivalent Unit) targets and <strong>MQC</strong> (Minimum Quantity Commitment) ceilings.</li>
-    <li><strong>Result:</strong> Assignments that meet targets and run reliably on a weekly cadence with clear auditability.</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <div class="tagrow"><span>PySpark</span><span>Optimization</span><span>Delta</span><span>Python</span></div>
-
-  <h3>What I had to learn</h3>
-  <p>Expressing business commitments as constraints and validating feasible solutions against historical allocations.</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Translating rules into a solvable model. <strong>Hated:</strong> Edge cases when targets conflict with MQC limits.</p>
-</section>`
-    }
-  ],
-
-  // 2) Move Customer Temperature here + existing analytics project
-  "Analytics & Insights": [
+  "Machine Learning and AI": [
     {
       id: "customer-temperature",
       name: "Customer Temperature (Daily CX Insights)",
@@ -305,59 +296,29 @@ const projectsData = {
 </section>`
     },
     {
-      id: "powerbi-optimizations",
-      name: "Power BI Optimizations (Confidential Shipments)",
-      summary: "Multiple dataflows + rewired transforms cut refresh time by ~50% for a confidential/military shipment dashboard.",
-      outcomes: ["~50% faster refresh"],
-      stack: ["Power BI","Dataflows","Transform tuning"],
+      id: "supplier-optimization",
+      name: "Supplier Assignment Optimization",
+      summary: "Linear programming for weekly PO allocation by lane/supplier under FEU targets and MQC ceilings.",
+      outcomes: ["Auditable runs","Targets respected"],
+      stack: ["PySpark","Optimization","Delta","Python"],
       details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> A critical Power BI dashboard for confidential/military shipments held too much data and refreshed slowly.</li>
-    <li><strong>Task:</strong> Re-architect refresh and transformations to cut refresh time.</li>
-    <li><strong>Action:</strong> Used multiple dataflows and rewired transformations to reduce latency.</li>
-    <li><strong>Result:</strong> <strong>~50% faster</strong> refresh while preserving required operational detail.</li>
+    <li><strong>Situation:</strong> Weekly purchase orders (POs) had to be allocated across lanes/suppliers with FEU and MQC constraints.</li>
+    <li><strong>Task:</strong> Build an optimization that respects business rules and produces auditable allocations.</li>
+    <li><strong>Action:</strong> Implemented linear programming with constraints for <strong>FEU</strong> (Forty-foot Equivalent Unit) targets and <strong>MQC</strong> (Minimum Quantity Commitment) ceilings.</li>
+    <li><strong>Result:</strong> Assignments that meet targets and run reliably on a weekly cadence with clear auditability.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>Power BI</span><span>Dataflows</span><span>Transform tuning</span></div>
+  <div class="tagrow"><span>PySpark</span><span>Optimization</span><span>Delta</span><span>Python</span></div>
 
   <h3>What I had to learn</h3>
-  <p>Restructuring dataflows/transforms to minimize refresh time without losing fidelity.</p>
+  <p>Expressing business commitments as constraints and validating feasible solutions against historical allocations.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Making a slow dashboard operationally reliable. <strong>Hated:</strong> Balancing confidentiality constraints with diagnostic visibility.</p>
-</section>`
-    }
-  ],
-
-  // 6) Placeholders (per your descriptions)
-  "Backlog / Placeholders": [
-    {
-      id: "capacity-management",
-      name: "Capacity Management",
-      summary: "Every ~3 hours data load to manage capacity as part of kean process.",
-      outcomes: [],
-      stack: [],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Capacity needs periodic refresh.</li>
-    <li><strong>Task:</strong> Quick load every ~3 hours to manage capacity (kean process).</li>
-    <li><strong>Action:</strong> TBD</li>
-    <li><strong>Result:</strong> TBD</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <p>TBD</p>
-
-  <h3>What I had to learn</h3>
-  <p>TBD</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p>TBD</p>
+  <p><strong>Liked:</strong> Translating rules into a solvable model. <strong>Hated:</strong> Edge cases when targets conflict with MQC limits.</p>
 </section>`
     },
     {
@@ -411,31 +372,60 @@ const projectsData = {
   <h3>Challenge I liked/hated</h3>
   <p>TBD</p>
 </section>`
-    },
+    }
+  ],
+
+  "Cloud Engineering": [
     {
-      id: "org-maintenance-automation",
-      name: "Org Maintenance Automation",
-      summary: "Automation for organizational maintenance (placeholder).",
-      outcomes: [],
-      stack: [],
+      id: "iac-cicd-standardization",
+      name: "Azure Infrastructure as Code (IaC) + CI/CD",
+      summary: "Dev & prod environments in HCL with pipelines managing all resource changes.",
+      outcomes: ["Repeatable environments"],
+      stack: ["HCL (Terraform style)","Azure","CI/CD"],
       details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> TBD</li>
-    <li><strong>Task:</strong> TBD</li>
-    <li><strong>Action:</strong> TBD</li>
-    <li><strong>Result:</strong> TBD</li>
+    <li><strong>Situation:</strong> Needed consistent dev and production environments managed as code.</li>
+    <li><strong>Task:</strong> Create environments using HashiCorp Configuration Language (HCL) following IaC standards and manage changes via pipelines.</li>
+    <li><strong>Action:</strong> Wrote IaC for dev/prod; wired CI/CD so all resource changes move through code review and deployment.</li>
+    <li><strong>Result:</strong> Repeatable environments with changes tracked and deployed through CI/CD.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <p>TBD</p>
+  <div class="tagrow"><span>HCL</span><span>Azure</span><span>CI/CD</span></div>
 
   <h3>What I had to learn</h3>
-  <p>TBD</p>
+  <p>Structuring environment code to keep parity between dev and prod while staying easy to evolve.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p>TBD</p>
+  <p><strong>Liked:</strong> Code-reviewable infra changes. <strong>Hated:</strong> Cleaning up drift from prior manual edits.</p>
+</section>`
+    },
+    {
+      id: "github-workflows",
+      name: "GitHub Workflows (Databricks & ADF)",
+      summary: "CI/CD from dev → main to promote Databricks and ADF changes into production.",
+      outcomes: ["Consistent releases"],
+      stack: ["GitHub Actions","Azure Databricks","Azure Data Factory"],
+      details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Needed a reliable path to move code from development to production for Azure Databricks and Azure Data Factory (ADF).</li>
+    <li><strong>Task:</strong> Use GitHub workflows to create CI/CD from <code>dev</code> branch to <code>main</code>.</li>
+    <li><strong>Action:</strong> Implemented GitHub workflows to build/test and promote Databricks/ADF changes from dev to main for production.</li>
+    <li><strong>Result:</strong> A consistent release path from development to production.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>GitHub Actions</span><span>Azure Databricks</span><span>Azure Data Factory</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Sequencing Databricks and ADF promotions cleanly between branches.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Clear, repeatable releases. <strong>Hated:</strong> Timing between pipeline runs and dependent artifacts.</p>
 </section>`
     }
   ]
