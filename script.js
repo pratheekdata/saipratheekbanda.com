@@ -67,3 +67,32 @@
   el.addEventListener("pointercancel", endPress);
 })();
 // ---- end of 2-position THEME TOGGLE ----
+
+// Contact Form Validation
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('.contact form');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      let isValid = true;
+      // Simple validation
+      if (!name) {
+        alert('Please enter your name.');
+        isValid = false;
+      }
+      if (!email || !/\S+@\S+\.\S+/.test(email)) {
+        alert('Please enter a valid email address.');
+        isValid = false;
+      }
+      if (!message) {
+        alert('Please enter a message.');
+        isValid = false;
+      }
+      if (!isValid) {
+        e.preventDefault();
+      }
+    });
+  }
+});
