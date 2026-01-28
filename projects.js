@@ -1,272 +1,253 @@
 // ---------- Data (edit your projects here) ----------
 const projectsData = {
   "Data Engineering": [
-    {
-      id: "icdm-marketplace",
-      name: "Integrated Customer Data Marketplace",
-      summary: "Central repository of supply-chain programs/products and common KPIs for contract tracking & monthly/query reporting.",
-      outcomes: ["Consistent KPI views", "Lower ad-hoc reporting"],
-      stack: ["Databricks","Delta","SQL","PySpark","ER modeling"],
-      details: `
+  {
+    id: "cx-team-performance-platform",
+    name: "CX Team Performance Platform",
+    summary: "Unified CX performance platform combining case data, telephony metrics, and workforce signals into a governed KPI layer.",
+    outcomes: ["Single source of truth", "Consistent KPI definitions", "Reduced manual reporting"],
+    stack: ["ADLS","ADF","Databricks","Delta","SQL","Power BI","Salesforce","Cisco Webex Contact Center"],
+    details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> Program Management in supply chain needed a central place for products, customer programs (by vertical), and common KPIs to check contract performance and run monthly/query reports.</li>
-    <li><strong>Task:</strong> Organize customers → colleagues → products/programs with consistent KPI definitions.</li>
-    <li><strong>Action:</strong> Built a curated marketplace of KPI views and <strong>deployed an entity-relationship (ER) model</strong> to maintain relationships between customers, colleagues, products, and KPI metrics.</li>
-    <li><strong>Result:</strong> A go-to marketplace for program KPIs that reduces ad-hoc reporting and increases consistency.</li>
+    <li><strong>Situation:</strong> CX performance across North America relied on data spread across Salesforce, telephony systems, and operational sources, leading to fragmented and inconsistent reporting.</li>
+    <li><strong>Task:</strong> Build a centralized platform delivering reliable daily KPIs for colleagues, managers, and leadership.</li>
+    <li><strong>Action:</strong> Designed and implemented pipelines and a KPI analytics layer that integrates Salesforce case data with Cisco Webex Contact Center metrics, standardizes KPIs, and enables rollups from individual → manager → leadership while separating KPI logic from reporting.</li>
+    <li><strong>Result:</strong> A single source of truth used by <strong>300+ colleagues and leadership</strong>, enabling consistent reviews and faster operational decisions.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>Databricks</span><span>Delta</span><span>SQL</span><span>PySpark</span><span>ER model</span></div>
-  <p>Curated vs publish layers documented; incremental refresh patterns; program master data (customer → vertical → program).</p>
+  <div class="tagrow"><span>ADLS</span><span>ADF</span><span>Databricks</span><span>Delta</span><span>SQL</span><span>Power BI</span></div>
+  <p>Flow: Operational Systems → ADLS → Databricks/ADF → SQL KPI Layer → Power BI</p>
 
   <h3>What I had to learn</h3>
-  <p>Modeling program/colleague/product relationships in an ER model that keeps KPI views reusable and governed.</p>
+  <p>Aligning KPI definitions across fundamentally different systems while ensuring business consistency.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Turning scattered program knowledge into a consistent catalog. <strong>Hated:</strong> Normalizing KPI names/thresholds that varied by program.</p>
+  <p><strong>Liked:</strong> Designing a KPI layer for large datasets and ensuring KPIs remain consistent across products. <strong>Hated:</strong> Reconciling identities without breaking rollups and dealing with inconsistent upstream data sources.</p>
 </section>`
-    },
-    {
-      id: "team-performance-dashboard",   // merged: was Team Performance + High-Volume ETL
-      name: "Team Performance Platform (ETL → Dashboard, CX — NAM)",
-      summary: "Daily ETL of Salesforce + Cisco Webex Contact Center into a Power BI dashboard for >300 colleagues, manager→leadership rollups.",
-      outcomes: ["Backfillable pipelines","Clear lineage","Leadership rollups"],
-      stack: ["ADLS","ADF","SQL","Databricks","Power BI","Salesforce","Cisco Webex Contact Center"],
-      details: `
+  },
+
+  {
+    id: "transit-delivery-performance",
+    name: "Transit & Delivery Time Performance",
+    summary: "Operational analytics on middle-mile transit performance to identify service gaps and prevent revenue leakage.",
+    outcomes: ["Lane-level performance insights", "Revenue leakage reduction"],
+    stack: ["Snowflake","Azure Data Platform","SQL","PySpark","KPI Modeling"],
+    details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> CX performance across North America (NAM) needed a single, consistent view for >300 colleagues across managers → Head of CX.</li>
-    <li><strong>Task:</strong> Build reliable daily ingestion (1M+ rows/day) and deliver a dashboard covering cases, customer feedback, CSAT, and phone activity.</li>
-    <li><strong>Action:</strong> Orchestrated ADLS → SQL loads with ADF/Databricks, established lineage/backfills, and surfaced KPIs in Power BI combining Salesforce data with Cisco Webex Contact Center metrics.</li>
-    <li><strong>Result:</strong> Stable refreshes for <strong>350+ stakeholders</strong>, predictable backfills, and leadership rollups for day-to-day reviews.</li>
+    <li><strong>Situation:</strong> CX lacked a clear operational view of middle-mile performance, making it hard to understand delivery delays and customer impact.</li>
+    <li><strong>Task:</strong> Highlight transit delays, link them to contractual expectations, and identify lanes causing revenue loss.</li>
+    <li><strong>Action:</strong> Built analytics tracking lane-level performance, comparing actuals vs contractual commitments, and identifying recurring delay patterns.</li>
+    <li><strong>Result:</strong> <strong>Immediate impact</strong> — identified chronically late lanes, enabling decisions to adjust or remove underperforming lanes.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>ADLS</span><span>ADF</span><span>Databricks</span><span>SQL</span><span>Power BI</span><span>Salesforce</span><span>Cisco Webex Contact Center</span></div>
-  <p>Flow: <em>Azure Data Lake Storage → ADF/Databricks → SQL → Power BI</em>. KPIs: cases, feedback, <strong>CSAT</strong> (Customer Satisfaction), phone accessibility/adherence.</p>
+  <div class="tagrow"><span>Snowflake</span><span>SQL</span><span>PySpark</span><span>KPI Modeling</span></div>
 
   <h3>What I had to learn</h3>
-  <p>Designing repeatable backfill strategies and aligning KPI definitions across Salesforce objects and telephony metrics.</p>
+  <p>Understanding different delivery types and how their operational behavior changes contractual obligations and transit time targets.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Resilient retries/alerts and clean org rollups. <strong>Hated:</strong> Reconciling identifiers between Salesforce users and telephony agents; scheduling around late files.</p>
+  <p><strong>Liked:</strong> Instant impact from clear lane-level performance insights. <strong>Hated:</strong> Obtaining and validating contractual obligations from sales in inconsistent formats.</p>
 </section>`
-    },
-    {
-      id: "powerbi-optimizations",
-      name: "Power BI Optimizations (Confidential Shipments)",
-      summary: "Multiple dataflows + rewired transforms cut refresh time by ~50% for a confidential/military shipment dashboard.",
-      outcomes: ["~50% faster refresh"],
-      stack: ["Power BI","Dataflows","Transform tuning"],
-      details: `
+  },
+
+  {
+    id: "financial-forecast-accuracy",
+    name: "Financial Forecast Accuracy & Performance Analytics",
+    summary: "Budget vs forecast vs actual financial and volume analytics measuring forecast accuracy across products.",
+    outcomes: ["Forecast accuracy visibility", "Improved planning decisions"],
+    stack: ["Excel","SQL","Financial KPI Modeling","Forecast Accuracy Metrics"],
+    details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> A critical Power BI dashboard for confidential/military shipments held too much data and refreshed slowly.</li>
-    <li><strong>Task:</strong> Re-architect refresh and transformations to cut refresh time.</li>
-    <li><strong>Action:</strong> Used multiple dataflows and rewired transformations to reduce latency.</li>
-    <li><strong>Result:</strong> <strong>~50% faster</strong> refresh while preserving required operational detail.</li>
+    <li><strong>Situation:</strong> Limited visibility into how accurate budgets and partner forecasts were compared to actual performance.</li>
+    <li><strong>Task:</strong> Analyze monthly performance across ~10 products to understand forecast quality and planning gaps.</li>
+    <li><strong>Action:</strong> Built analytics comparing budget vs forecast vs actuals, validating financials and volumes, and measuring forecast accuracy using <strong>APE</strong> and <strong>MAPE</strong>.</li>
+    <li><strong>Result:</strong> Structured visibility into forecasting performance, supporting better future planning decisions.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>Power BI</span><span>Dataflows</span><span>Transform tuning</span></div>
+  <div class="tagrow"><span>Excel</span><span>SQL</span><span>Financial Modeling</span><span>MAPE/APE</span></div>
 
   <h3>What I had to learn</h3>
-  <p>Restructuring dataflows/transforms to minimize refresh time without losing fidelity.</p>
+  <p>Refreshing financial performance metrics like EBIT and profit percentage and how financial outcomes relate to operational volumes.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Making a slow dashboard operationally reliable. <strong>Hated:</strong> Balancing confidentiality constraints with diagnostic visibility.</p>
+  <p><strong>Liked:</strong> Improving an existing planning process in a way that could be adopted quickly. <strong>Hated:</strong> Excel as a source system — frequent structural changes and user input errors.</p>
 </section>`
-    },
-    {
-      id: "capacity-management",
-      name: "Capacity Management",
-      summary: "Every ~3 hours data load to manage capacity as part of kean process.",
-      outcomes: [],
-      stack: [],
-      details: `
+  },
+  {
+  id: "icdm-marketplace",
+  name: "Integrated Customer Data Marketplace",
+  summary: "Central KPI marketplace and governed data model to standardize program performance reporting and reduce ad-hoc analysis.",
+  outcomes: ["Consistent KPI views", "Lower ad-hoc reporting", "Reusable KPI definitions"],
+  stack: ["Databricks","Delta","SQL","PySpark","ER Modeling","KPI Governance"],
+  details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> Capacity needs periodic refresh.</li>
-    <li><strong>Task:</strong> Quick load every ~3 hours to manage capacity (kean process).</li>
-    <li><strong>Action:</strong> TBD</li>
-    <li><strong>Result:</strong> TBD</li>
+    <li><strong>Situation:</strong> Program and performance reporting needed a central place for products/programs and common KPIs to support monthly and ad-hoc decision-making.</li>
+    <li><strong>Task:</strong> Create a structured marketplace of KPI views with consistent definitions and reusable relationships across key entities.</li>
+    <li><strong>Action:</strong> Built a curated KPI marketplace and implemented an <strong>ER model</strong> to maintain relationships between customers, colleagues, products/programs, and KPI metrics—making KPI definitions reusable and governed.</li>
+    <li><strong>Result:</strong> A go-to KPI marketplace that reduces ad-hoc reporting and improves consistency across performance views.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <p>TBD</p>
+  <div class="tagrow"><span>Databricks</span><span>Delta</span><span>SQL</span><span>PySpark</span><span>ER Modeling</span></div>
+  <p>Curated vs publish layers; reusable KPI views; governed entity relationships across customer/org/product/program.</p>
 
   <h3>What I had to learn</h3>
-  <p>TBD</p>
+  <p>Designing an ER model that keeps KPI views reusable and consistent while still flexible enough for evolving programs.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p>TBD</p>
+  <p><strong>Liked:</strong> Turning scattered program knowledge into a clean, reusable catalog of KPIs. <strong>Hated:</strong> Normalizing KPI names/thresholds that varied across teams and programs.</p>
 </section>`
-    }
-  ],
-
-  "Automation & Data Apps": [
-    {
-      id: "automation-toolkit",
-      name: "Microsoft Ecosystem Integrations Toolkit (Python)",
-      summary: "Reusable wheel for SharePoint, Power BI (500+ dashboards), SendGrid, Azure SQL helpers; centralized auth/retries.",
-      outcomes: ["Faster delivery","DRY integrations","Central dashboard monitoring"],
-      stack: ["Python","SharePoint","Power BI","SendGrid","Azure SQL"],
-      details: `
+},
+  {
+  id: "azure-data-platform-architecture",
+  name: "Azure Data Platform Architecture & Environment Standardization",
+  summary: "Standardized Azure data platform structure for environments, storage layers, governance, and pipeline patterns.",
+  outcomes: ["Consistent platform foundation", "Improved maintainability", "Faster onboarding"],
+  stack: ["Azure Databricks","ADLS Gen2","Delta Lake","Azure Key Vault","Data Governance"],
+  details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> Team repeatedly needed Microsoft service access, email, and SQL operations for reports/Power Apps.</li>
-    <li><strong>Task:</strong> Package a reusable toolkit to standardize common operations.</li>
-    <li><strong>Action:</strong> Implemented modules for SharePoint (publish/archival), Power BI (<strong>500+ dashboards</strong> status & post-pipeline refresh triggers), SendGrid (emails), and SQL DB manager (read/write/update; stored procedure triggers).</li>
-    <li><strong>Result:</strong> Faster delivery and much less repeated scripting.</li>
+    <li><strong>Situation:</strong> Multiple analytics solutions were being developed without a consistent structure for environments, storage, naming, and governance.</li>
+    <li><strong>Task:</strong> Design a repeatable platform structure so analytics products follow the same environment, storage, and governance standards.</li>
+    <li><strong>Action:</strong> Defined the Azure data platform blueprint including dev vs prod workspace strategy, ADLS layer structure (raw → curated → publish), table standards, secret management, cluster usage patterns, and Delta maintenance conventions.</li>
+    <li><strong>Result:</strong> A consistent foundation for analytics products, reducing onboarding time and improving performance and governance predictability.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Azure Databricks</span><span>ADLS Gen2</span><span>Delta Lake</span><span>Key Vault</span><span>Environment Strategy</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>Balancing governance with flexibility—designing standards teams can follow without slowing delivery.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Turning scattered practices into a clear platform blueprint. <strong>Hated:</strong> Untangling legacy structures that lacked consistent conventions.</p>
+</section>`
+}
+
+],
+
+
+ "Automation & Data Apps": [
+  {
+    id: "exception-notifier-na",
+    name: "Exception Notifier (North America)",
+    summary: "Rule-driven automation that monitors arriving shipments and detected exceptions, notifying customers proactively to prevent port delays, fines, and operational disruptions.",
+    outcomes: ["Proactive customer communication", "Reduced risk of port delays/fines", "Lower manual effort"],
+    stack: ["Python","Data rules","Email/API automation","Logging & monitoring","Idempotent processing"],
+    details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Arriving shipments often had operational exceptions that were not consistently communicated to customers in time, leading to port delays, financial penalties, and movement disruptions.</li>
+    <li><strong>Task:</strong> Use data rules to detect shipment exceptions early and automatically inform customers, enabling smoother transitions and reduced operational risk.</li>
+    <li><strong>Action:</strong> Built a rule-based automation that applies exception rules to shipment data, identifies potential issues before arrival, and sends proactive customer communications.</li>
+    <li><strong>Result:</strong> Improved shipment flow and fewer last-minute escalations by reducing risk of fines and movement delays.</li>
+  </ul>
+
+  <h3>Technical Overview</h3>
+  <div class="tagrow"><span>Python</span><span>Rules engine</span><span>Email/API</span><span>Logging</span><span>Idempotency</span></div>
+
+  <h3>What I had to learn</h3>
+  <p>The company’s data infrastructure, the operational process, and the possible outcomes tied to different shipment exception scenarios.</p>
+
+  <h3>Challenge I liked/hated</h3>
+  <p><strong>Liked:</strong> Leaning on SMEs across the US/Canada/Mexico to define clear, rule-based exceptions grounded in real operations. <strong>Hated:</strong> Navigating the company’s technical landscape as the sole technical person on the team.</p>
+</section>`
+  },
+
+  {
+    id: "microsoft-integrations-toolkit",
+    name: "Microsoft Ecosystem Integrations Toolkit (Python)",
+    summary: "Reusable Python toolkit for Microsoft ecosystem integrations, standardizing authentication, retries, and common operations across SharePoint, Power BI, email services, and SQL.",
+    outcomes: ["Faster delivery", "Reduced repeated scripting", "More reliable integrations"],
+    stack: ["Python","SharePoint API","Power BI API","SendGrid API","Azure SQL","Auth + retries"],
+    details: `
+<section class="proj-detail">
+  <h3>Business Overview</h3>
+  <ul class="bullets">
+    <li><strong>Situation:</strong> Multiple projects required repeated integrations with Microsoft services (SharePoint, Power BI, SQL, email), causing duplicated effort and inconsistent implementation patterns.</li>
+    <li><strong>Task:</strong> Create a reusable toolkit that simplifies common operations and standardizes how integrations are handled across projects.</li>
+    <li><strong>Action:</strong> Packaged a Python toolkit with modules for SharePoint publishing/archival, Power BI operations (status checks + post-pipeline refresh triggers), SendGrid email automation, and SQL helpers—centralizing authentication, retries, and logging.</li>
+    <li><strong>Result:</strong> Faster project delivery and less “reinvent the wheel” scripting across analytics and automation solutions.</li>
   </ul>
 
   <h3>Technical Overview</h3>
   <div class="tagrow"><span>Python</span><span>SharePoint</span><span>Power BI</span><span>SendGrid</span><span>Azure SQL</span></div>
 
   <h3>What I had to learn</h3>
-  <p>Packaging Microsoft integrations and SQL helpers for simple adoption with unified authentication and retries.</p>
+  <p>Designing integration modules that are simple for others to use while handling complex authentication, error handling, and service-specific behaviors behind the scenes.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> One import to handle repetitive tasks. <strong>Hated:</strong> Small API/auth differences across services.</p>
+  <p><strong>Liked:</strong> Creating a “plug-and-play” toolkit where one import can handle tasks that previously required repeated custom code. <strong>Hated:</strong> Small but important differences in API behaviors, plus continuous maintenance and adding new capabilities.</p>
 </section>`
-    },
-    {
-      id: "powerapps-data-archive",
-      name: "Power Apps Data Archive",
-      summary: "Archival pipeline for Power Apps data using SharePoint for publishing and long-term storage.",
-      outcomes: ["Safer retention","Reliable publishing"],
-      stack: ["SharePoint","Power Apps","Python/Automation"],
-      details: `
+  },
+
+  {
+    id: "cisco-webex-cc-graphql",
+    name: "Cisco Webex Contact Center API (GraphQL)",
+    summary: "Python-based GraphQL integration to extract agent and telephony performance metrics for consistent phone accessibility and adherence analytics.",
+    outcomes: ["Automated telephony metrics retrieval", "Stable inputs for KPI layers"],
+    stack: ["Python","GraphQL","Cisco Webex Contact Center","API integration","Data shaping"],
+    details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> Reports and Power Apps needed a dependable archival path for app data.</li>
-    <li><strong>Task:</strong> Create a process to publish artifacts and archive app records safely.</li>
-    <li><strong>Action:</strong> Implemented archival to SharePoint (Lists/files) and automated publishing hooks.</li>
-    <li><strong>Result:</strong> Repeatable retention with straightforward retrieval for reporting.</li>
+    <li><strong>Situation:</strong> Phone performance metrics (agent activity, accessibility, adherence) were difficult to retrieve consistently and often required manual exports.</li>
+    <li><strong>Task:</strong> Build a reliable way to extract Cisco Webex Contact Center metrics on a repeatable cadence for analytics and reporting.</li>
+    <li><strong>Action:</strong> Developed a Python package using GraphQL queries to retrieve agent/queue performance stats, standardize outputs for downstream KPI layers, and handle pagination/query shaping efficiently.</li>
+    <li><strong>Result:</strong> Reliable, automated access to telephony performance data used in CX analytics and operational reporting.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>SharePoint</span><span>Power Apps</span><span>Python/Automation</span></div>
+  <div class="tagrow"><span>Python</span><span>GraphQL</span><span>Cisco Webex CC</span><span>API</span><span>Data shaping</span></div>
 
   <h3>What I had to learn</h3>
-  <p>Balancing SharePoint list/file storage patterns for retrieval speed vs. governance.</p>
+  <p>Structuring GraphQL queries for the right data shapes and designing outputs that remain stable as reporting needs evolve.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Simple restore paths. <strong>Hated:</strong> Handling schema tweaks from evolving apps.</p>
+  <p><strong>Liked:</strong> The precision of GraphQL—pulling exactly the fields needed for performance reporting. <strong>Hated:</strong> Pagination limitations across APIs and understanding how different objects/schemas are linked together.</p>
 </section>`
-    },
-    {
-      id: "exception-notifier",
-      name: "Exception Notifier (North America)",
-      summary: "Automated exception emails with observability; ~$100k savings and ~400 hours/year saved.",
-      outcomes: ["~$100k savings","~400 hours/year saved"],
-      stack: ["Python","Email/API","Logging"],
-      details: `
+  },
+
+  {
+  id: "org-maintenance-automation",
+  name: "Org Maintenance Automation",
+  summary: "Python automation replacing a manual FTE-driven process to maintain organizational hierarchies for downstream analytics.",
+  outcomes: ["Automated hierarchy updates", "Consistent org structures", "Reduced manual effort"],
+  stack: ["Python","Workday integration","Hierarchy logic","Delta Lake","Data validation"],
+  details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> Shipment exceptions needed timely, templated communications.</li>
-    <li><strong>Task:</strong> Automate exception emails with reliable processing and observability.</li>
-    <li><strong>Action:</strong> Implemented idempotent processing, templated messages, and strong logging/metrics.</li>
-    <li><strong>Result:</strong> ~<strong>$100k</strong> savings and ~<strong>400 hours/year</strong> less manual effort.</li>
+    <li><strong>Situation:</strong> Organizational hierarchy maintenance was manual and required dedicated effort, leading to inconsistencies and broken reporting rollups.</li>
+    <li><strong>Task:</strong> Automate hierarchy maintenance and reflect structural changes reliably for downstream dashboards and analytics systems.</li>
+    <li><strong>Action:</strong> Built a Python automation sourcing data from Workday, detecting reporting structure changes, and updating organizational hierarchies accordingly.</li>
+    <li><strong>Result:</strong> Replaced a manual FTE-driven process with automation and improved consistency of org data across analytics products.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>Python</span><span>Email/API</span><span>Logging</span></div>
+  <div class="tagrow"><span>Python</span><span>Workday</span><span>Hierarchy logic</span><span>Delta Lake</span></div>
 
   <h3>What I had to learn</h3>
-  <p>Reliable idempotency and clear observability so operations trust automated comms.</p>
+  <p>How organizational hierarchies behave operationally and how to translate structural changes into reliable automated logic.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Turning noisy exception data into clear messages. <strong>Hated:</strong> Edge-case templates for uncommon routes.</p>
+  <p><strong>Liked:</strong> The challenge of automating a complex, human-driven process. <strong>Hated:</strong> Accounting for multiple regional exceptions and adapting logic accordingly.</p>
 </section>`
-    },
-    {
-      id: "pm-kpi-automation",
-      name: "PM KPI Automation (Asana)",
-      summary: "REST-driven sync to render project KPIs; ~40 hours/month saved.",
-      outcomes: ["~40 hours/month saved"],
-      stack: ["APIs","Python","Automation"],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Project KPIs lived in Asana and needed automated, repeatable rendering.</li>
-    <li><strong>Task:</strong> Sync via REST and publish KPIs with clean transforms.</li>
-    <li><strong>Action:</strong> Built a REST-driven integration with tidy transformations and publishing.</li>
-    <li><strong>Result:</strong> ~<strong>40 hours/month</strong> saved and more consistent KPI visibility.</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <div class="tagrow"><span>APIs</span><span>Python</span><span>Automation</span></div>
-
-  <h3>What I had to learn</h3>
-  <p>Mapping task/project fields into a durable KPI schema that stays stable as boards evolve.</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Simplifying the transforms. <strong>Hated:</strong> Normalizing inconsistent custom fields across teams.</p>
-</section>`
-    },
-    {
-      id: "cisco-webex-contact-center-api",
-      name: "Cisco Webex Contact Center API (GraphQL)",
-      summary: "Python package using GraphQL to extract agent stats and phone accessibility/adherence.",
-      outcomes: ["Reliable metrics retrieval"],
-      stack: ["Python","GraphQL","Cisco Webex Contact Center"],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> Needed automated access to Cisco Webex Contact Center for agent stats and company phone accessibility/adherence.</li>
-    <li><strong>Task:</strong> Build a Python package that queries the API and outputs metrics for tracking.</li>
-    <li><strong>Action:</strong> Wrote a package that uses GraphQL queries to extract agent stats and accessibility/adherence measures.</li>
-    <li><strong>Result:</strong> Reliable retrieval of phone/agent performance data for reporting.</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <div class="tagrow"><span>Python</span><span>GraphQL</span><span>Cisco Webex Contact Center</span></div>
-
-  <h3>What I had to learn</h3>
-  <p>Writing and organizing GraphQL queries to fetch the right shapes/fields for performance tracking.</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Precise metrics via GraphQL. <strong>Hated:</strong> Schema/field changes that impact queries.</p>
-</section>`
-    },
-    {
-      id: "org-maintenance-automation",
-      name: "Org Maintenance Automation",
-      summary: "Automation for organizational maintenance (placeholder).",
-      outcomes: [],
-      stack: [],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> TBD</li>
-    <li><strong>Task:</strong> TBD</li>
-    <li><strong>Action:</strong> TBD</li>
-    <li><strong>Result:</strong> TBD</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <p>TBD</p>
-
-  <h3>What I had to learn</h3>
-  <p>TBD</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p>TBD</p>
-</section>`
-    }
-  ],
+}
+],
 
   "Machine Learning and AI": [
     {
