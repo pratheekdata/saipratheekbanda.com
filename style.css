@@ -127,7 +127,8 @@ a:hover { text-decoration: underline; }
 }
 .grid {
   display: grid; gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* allow narrower columns on small screens to avoid overflowing the container */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 .proj {
   background: var(--card); padding: 1rem; border-radius: var(--radius);
@@ -165,7 +166,13 @@ a:hover { text-decoration: underline; }
 /* Category cards on the homepage */
 .cats .cat { background: var(--card); padding: 1rem; border-radius: var(--radius);
   border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  display: flex; flex-direction: column; height: 200px; }
+  display: flex; flex-direction: column; min-height: 200px; overflow: hidden; }
+
+/* prevent long words or links from forcing horizontal scroll inside cards */
+.cats .cat, .cats .cat p, .cats .cat .tease { overflow-wrap: break-word; word-break: break-word; }
+
+/* safeguard: hide any accidental horizontal overflow from the main container */
+.container { overflow-x: hidden; }
 .cats .tease { color: var(--muted); margin: .25rem 0 .5rem; }
 .cat-list { margin: .4rem 0 0; padding-left: 1.1rem; }
 .cat-list li { margin: .5rem 0; }
