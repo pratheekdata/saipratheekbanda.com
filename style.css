@@ -109,7 +109,7 @@ a:hover { text-decoration: underline; }
 .featured { margin: 1.25rem 0 1.75rem; }
 .featured h3 { margin: 0 0 .75rem; font-size: 1.1rem; }
 .featured-grid { gap: 1.25rem; }
-.featured-grid .featured-card { position: relative; }
+.featured-grid .featured-card { position: relative; z-index: 0; }
 .featured-card .badge {
   display: inline-flex;
   align-items: center;
@@ -168,9 +168,10 @@ a:hover { text-decoration: underline; }
 }
 
 /* Category cards on the homepage */
+.cats { position: relative; z-index: 0; }
 .cats .cat { background: var(--card); padding: 1rem; border-radius: var(--radius);
   border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
-  display: flex; flex-direction: column; height: auto; min-height: 0; }
+  display: flex; flex-direction: column; height: auto; min-height: 0; z-index: 0; }
 
 /* prevent long words or links from forcing horizontal scroll inside cards */
 .cats .cat, .cats .cat p, .cats .cat .tease { overflow-wrap: break-word; word-break: break-word; }
