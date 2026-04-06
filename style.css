@@ -59,9 +59,10 @@ a:hover { text-decoration: underline; }
 .skip-link:focus { left: 1rem; top: 1rem; background: #fff; color: #000; padding: .5rem 1rem; border-radius: 8px; }
 
 .site-header {
-  position: sticky; top: 0; z-index: 10;
+  position: sticky; top: 0; z-index: 9999;
   backdrop-filter: saturate(180%) blur(8px);
-  background: color-mix(in oklab, var(--bg) 80%, transparent);
+  /* use a stronger opaque background to avoid content showing through */
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
   border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
 }
 .nav { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0; }
