@@ -57,31 +57,31 @@ const projectsData = {
   },
 
   {
-    id: "financial-forecast-accuracy",
-    name: "Financial Forecast Accuracy & Performance Analytics",
-    summary: "Budget vs forecast vs actual financial and volume analytics measuring forecast accuracy across products.",
-    outcomes: ["Forecast accuracy visibility", "Improved planning decisions"],
-    stack: ["Excel","SQL","Financial KPI Modeling","Forecast Accuracy Metrics"],
-    details: `
+  id: "financial-forecast-accuracy",
+  name: "Financial Forecast Accuracy & Performance Analytics",
+  summary: "Built budget vs forecast vs actual analytics across multiple products to measure forecast accuracy, validate financial and volume performance, and improve planning visibility.",
+  outcomes: ["Forecast accuracy visibility", "Improved planning decisions", "Better understanding of budget and partner forecast gaps"],
+  stack: ["Excel", "SQL", "Financial KPI Modeling", "Forecast Accuracy Metrics", "APE", "MAPE"],
+  details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> Limited visibility into how accurate budgets and partner forecasts were compared to actual performance.</li>
-    <li><strong>Task:</strong> Analyze monthly performance across ~10 products to understand forecast quality and planning gaps.</li>
-    <li><strong>Action:</strong> Built analytics comparing budget vs forecast vs actuals, validating financials and volumes, and measuring forecast accuracy using <strong>APE</strong> and <strong>MAPE</strong>.</li>
-    <li><strong>Result:</strong> Structured visibility into forecasting performance, supporting better future planning decisions.</li>
+    <li><strong>Situation:</strong> The business had limited visibility into how well budgeted and partner-provided forecasts aligned with actual monthly performance across products.</li>
+    <li><strong>Task:</strong> Analyze forecast quality across approximately 10 products by comparing budget, forecast, and actual results for both financial performance and operational volumes.</li>
+    <li><strong>Action:</strong> Built a structured analytical process using Excel and SQL to validate actuals, compare budget vs forecast vs actual performance, and measure forecast accuracy using <strong>APE</strong> and <strong>MAPE</strong>.</li>
+    <li><strong>Result:</strong> Created clear visibility into forecast reliability and planning gaps, helping stakeholders make better-informed future planning and performance decisions.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <div class="tagrow"><span>Excel</span><span>SQL</span><span>Financial Modeling</span><span>MAPE/APE</span></div>
+  <div class="tagrow"><span>Excel</span><span>SQL</span><span>Financial KPI Modeling</span><span>Volume Analytics</span><span>APE / MAPE</span></div>
 
   <h3>What I had to learn</h3>
-  <p>Refreshing financial performance metrics like EBIT and profit percentage and how financial outcomes relate to operational volumes.</p>
+  <p>Refreshed core financial performance concepts such as EBIT and profit percentage, and strengthened my understanding of how financial outcomes connect to operational volume trends.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p><strong>Liked:</strong> Improving an existing planning process in a way that could be adopted quickly. <strong>Hated:</strong> Excel as a source system — frequent structural changes and user input errors.</p>
+  <p><strong>Liked:</strong> Turning an existing planning process into something more measurable and actionable without requiring major process change. <strong>Hated:</strong> Using Excel as the primary source system, where frequent structure changes and manual input errors created recurring validation issues.</p>
 </section>`
-  },
+},
   {
   id: "icdm-marketplace",
   name: "Integrated Customer Data Marketplace",
@@ -303,55 +303,30 @@ const projectsData = {
 </section>`
     },
     {
-      id: "scm-forward-forecasting",
-      name: "SCM Forward Looking Forecasting",
-      summary: "Forward-looking forecasting in supply chain management (placeholder).",
-      outcomes: [],
-      stack: [],
-      details: `
+  id: "scm-forward-forecasting",
+  name: "SCM Forward-Looking Forecasting",
+  summary: "Built a forward-looking supply chain forecasting pipeline to estimate shipment volumes, improve planning visibility, and support allocation decisions across lanes.",
+  outcomes: ["Improved forecast reliability", "Better allocation planning", "Enhanced visibility into shipment volumes and trends"],
+  stack: ["PySpark","Delta","Python","SQL","Forecasting Logic","Feature Engineering"],
+  details: `
 <section class="proj-detail">
   <h3>Business Overview</h3>
   <ul class="bullets">
-    <li><strong>Situation:</strong> TBD</li>
-    <li><strong>Task:</strong> TBD</li>
-    <li><strong>Action:</strong> TBD</li>
-    <li><strong>Result:</strong> TBD</li>
+    <li><strong>Situation:</strong> Forecasting for shipment volumes lacked consistency due to fragmented data sources (NSCP, MODS) and unclear validation logic, leading to planning inefficiencies.</li>
+    <li><strong>Task:</strong> Develop a forward-looking forecasting process that consolidates multiple data sources and provides reliable volume estimates for planning and allocation.</li>
+    <li><strong>Action:</strong> Built a PySpark-based pipeline integrating NSCP and MODS shipment data, applying validation rules (CBM alignment, SB presence logic), and generating weekly forward-looking forecasts at lane level (POR, POD, supplier). Introduced smoothing and logic-based adjustments to improve forecast stability.</li>
+    <li><strong>Result:</strong> Delivered structured and validated forecasts enabling better planning discussions with stakeholders, improved allocation visibility, and identification of data inconsistencies impacting forecast accuracy.</li>
   </ul>
 
   <h3>Technical Overview</h3>
-  <p>TBD</p>
+  <div class="tagrow"><span>PySpark</span><span>Delta</span><span>Python</span><span>SQL</span><span>Forecasting Logic</span></div>
+  <p>Flow: Source systems (NSCP, MODS) → Data validation & merging → Feature engineering (lane, CBM, shipment signals) → Weekly forecast generation → Output for planning and allocation</p>
 
   <h3>What I had to learn</h3>
-  <p>TBD</p>
+  <p>Understanding supply chain data structures (shipments, bookings, CBM) and translating incomplete, real-world data into usable forecasting signals.</p>
 
   <h3>Challenge I liked/hated</h3>
-  <p>TBD</p>
-</section>`
-    },
-    {
-      id: "financial-forecasting",
-      name: "Financial Forecasting Analysis",
-      summary: "Financial forecasting analysis (placeholder).",
-      outcomes: [],
-      stack: [],
-      details: `
-<section class="proj-detail">
-  <h3>Business Overview</h3>
-  <ul class="bullets">
-    <li><strong>Situation:</strong> TBD</li>
-    <li><strong>Task:</strong> TBD</li>
-    <li><strong>Action:</strong> TBD</li>
-    <li><strong>Result:</strong> TBD</li>
-  </ul>
-
-  <h3>Technical Overview</h3>
-  <p>TBD</p>
-
-  <h3>What I had to learn</h3>
-  <p>TBD</p>
-
-  <h3>Challenge I liked/hated</h3>
-  <p>TBD</p>
+  <p><strong>Liked:</strong> Solving messy real-world data problems and building something directly usable for operations. <strong>Hated:</strong> Handling inconsistent source data and aligning multiple systems with different definitions of truth.</p>
 </section>`
     }
   ],
