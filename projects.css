@@ -314,5 +314,8 @@
   font-weight:600; font-size:.85rem;
 }
 
+/* Hide any tagrow that appears directly under the rendered article (prevents duplicated top-level tags) */
+.content article > .tagrow { display: none; }
+
 /* Backwards-compatible selector for detailed project sections */
 .proj-detail .tagrow{ margin: 0.25rem 0 .4rem; }
