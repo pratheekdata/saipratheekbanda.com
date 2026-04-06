@@ -306,10 +306,13 @@
 
 .proj-detail h3{ margin-top:.8rem; margin-bottom:.35rem; }
 .proj-detail .bullets{ padding-left:1.1rem; }
-.proj-detail .tagrow{ display:flex; flex-wrap:wrap; gap:.35rem; margin:.25rem 0 .4rem; }
-.proj-detail .tagrow span{
+.tagrow{ display:flex; flex-wrap:wrap; gap:.35rem; margin:.25rem 0 .4rem; }
+.tagrow span{
   padding:.18rem .4rem; border-radius:999px;
   background: color-mix(in oklab, var(--brand-ghost) 65%, var(--card) 35%);
   border:1px solid color-mix(in oklab, var(--text) 10%, transparent);
   font-weight:600; font-size:.85rem;
 }
+
+/* Backwards-compatible selector for detailed project sections */
+.proj-detail .tagrow{ margin: 0.25rem 0 .4rem; }
