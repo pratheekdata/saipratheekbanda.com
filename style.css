@@ -42,6 +42,9 @@ html[data-theme="dark"] {
     --brand-ghost: #0a223c;
   }
 }
+
+/* Ensure index main doesn't create a stacking context that covers the sticky header */
+#main { position: relative; z-index: 0; }
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 body {
