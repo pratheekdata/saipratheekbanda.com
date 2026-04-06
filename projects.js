@@ -601,7 +601,6 @@ function renderProject(id) {
     <article>
       <h2>${proj.name}</h2>
       <div class="meta">${proj.summary}</div>
-      <div class="tagrow">${(proj.stack || []).map(t => `<span>${t}</span>`).join('')}</div>
 
       <div class="block"><h3>Overview</h3>${proj.details}</div>
 
