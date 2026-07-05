@@ -34,7 +34,8 @@
 /* Responsive adjustments */
 @media (max-width: 900px) {
   .projects { grid-template-columns: 1fr; }
-  .sidebar { position: static; max-height: none; }
+  .sidebar { position: static; max-height: none; overflow: visible; }
+  #side-nav { overflow: visible; }
 }
 
 
@@ -46,8 +47,11 @@
   top: 72px;
   align-self: start;
   max-height: calc(100vh - 96px);
-  overflow: auto;
-  padding: 1.1rem;
+  /* overflow hidden on the outer shell — only #side-nav scrolls */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
   border-radius: calc(var(--radius) + 10px);
   border: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
   background: linear-gradient(180deg,
@@ -60,14 +64,10 @@
 }
 
 .sidebar-header {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  padding-bottom: .85rem;
-  margin-bottom: .75rem;
+  /* Static at top of flex column — never scrolls */
+  flex-shrink: 0;
+  padding: 1.1rem 1.1rem .85rem;
   border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
-  /* Must be opaque — sidebar has overflow:auto so items scroll behind this
-     header; any transparency lets them bleed through the title area */
   background: var(--card);
 }
 .sidebar h1 { font-size: 1.1rem; margin: .25rem 0; letter-spacing: .02em; }
@@ -98,7 +98,13 @@
   outline-offset: 2px;
 }
 
-#side-nav { margin-top: .65rem; }
+#side-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: .5rem 1.1rem 1.1rem;
+  margin-top: 0;
+}
 .side-group { margin: .7rem 0; }
 .side-group h3 {
   font-size: .95rem; margin: .5rem 0 .25rem; color: var(--muted);
