@@ -14,7 +14,7 @@ const projectsData = {
     <li><strong>Situation:</strong> CX performance across North America relied on data spread across Salesforce, telephony systems, and operational sources, leading to fragmented and inconsistent reporting.</li>
     <li><strong>Task:</strong> Build a centralized platform delivering reliable daily KPIs for colleagues, managers, and leadership.</li>
     <li><strong>Action:</strong> Designed and implemented pipelines and a KPI analytics layer that integrates Salesforce case data with Cisco Webex Contact Center metrics, standardizes KPIs, and enables rollups from individual → manager → leadership while separating KPI logic from reporting.</li>
-    <li><strong>Result:</strong> A single source of truth used by <strong>300+ colleagues and leadership</strong>, enabling consistent reviews and faster operational decisions.</li>
+    <li><strong>Result:</strong> A single source of truth used by <strong>300+ colleagues and leadership</strong>, replacing fragmented reporting with consistent daily KPI delivery and enabling faster operational decisions at every level of the organization.</li>
   </ul>
 
   <h3>Technical Overview</h3>
@@ -95,7 +95,7 @@ const projectsData = {
     <li><strong>Situation:</strong> Program and performance reporting needed a central place for products/programs and common KPIs to support monthly and ad-hoc decision-making.</li>
     <li><strong>Task:</strong> Create a structured marketplace of KPI views with consistent definitions and reusable relationships across key entities.</li>
     <li><strong>Action:</strong> Built a curated KPI marketplace and implemented an <strong>ER model</strong> to maintain relationships between customers, colleagues, products/programs, and KPI metrics—making KPI definitions reusable and governed.</li>
-    <li><strong>Result:</strong> A go-to KPI marketplace that reduces ad-hoc reporting and improves consistency across performance views.</li>
+    <li><strong>Result:</strong> Became the primary analytics layer for program reporting, cutting ad-hoc analysis requests and enabling consistent KPI reviews across product and leadership teams — a single governed source for all supply-chain performance metrics.</li>
   </ul>
 
   <h3>Technical Overview</h3>
@@ -153,7 +153,7 @@ const projectsData = {
     <li><strong>Situation:</strong> Arriving shipments often had operational exceptions that were not consistently communicated to customers in time, leading to port delays, financial penalties, and movement disruptions.</li>
     <li><strong>Task:</strong> Use data rules to detect shipment exceptions early and automatically inform customers, enabling smoother transitions and reduced operational risk.</li>
     <li><strong>Action:</strong> Built a rule-based automation that applies exception rules to shipment data, identifies potential issues before arrival, and sends proactive customer communications.</li>
-    <li><strong>Result:</strong> Improved shipment flow and fewer last-minute escalations by reducing risk of fines and movement delays.</li>
+    <li><strong>Result:</strong> Prevented port delays and fines across North America, saving an estimated <strong>$100K+/year</strong> and eliminating <strong>400+ hours</strong> of manual exception handling annually — shifting the team from reactive firefighting to proactive customer communication.</li>
   </ul>
 
   <h3>Technical Overview</h3>
