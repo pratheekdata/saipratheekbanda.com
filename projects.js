@@ -590,22 +590,21 @@ function renderOverview() {
   contentEl.innerHTML = `
     <div class="overview">
       <h2>All Projects <span class="overview-count">${total}</span></h2>
-      <p class="meta">End-to-end case studies across data platforms, automation, AI, and cloud. Click any project for the full case study.</p>
-      <div class="overview-grid">
-        ${Object.entries(projectsData).flatMap(([cat, items]) =>
-          items.map(p => `
-            <a class="overview-card" href="#${p.id}">
-              <span class="overview-badge">${cat}</span>
-              <h3>${p.name}</h3>
-              <p>${p.summary}</p>
-              <div class="overview-stack">
-                ${p.stack.slice(0, 4).map(s => `<span>${s}</span>`).join('')}
-                ${p.stack.length > 4 ? `<span class="more">+${p.stack.length - 4}</span>` : ''}
-              </div>
-            </a>
-          `)
-        ).join('')}
-      </div>
+      ${Object.entries(projectsData).map(([cat, items]) => `
+        <div class="ov-group">
+          <h3 class="ov-cat">${cat}</h3>
+          <div class="ov-list">
+            ${items.map(p => `
+              <a class="ov-row" href="#${p.id}">
+                <span class="ov-name">${p.name}</span>
+                <span class="ov-stack">
+                  ${p.stack.slice(0, 3).map(s => `<span>${s}</span>`).join('')}
+                </span>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `).join('')}
     </div>
   `;
   highlightActive();
