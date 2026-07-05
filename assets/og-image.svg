@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Dark background -->
+  <rect width="1200" height="630" fill="#0b0f14"/>
+
+  <!-- Brand radial glow (upper right) -->
+  <radialGradient id="glow" cx="78%" cy="18%" r="55%">
+    <stop offset="0%" stop-color="#0a66c2" stop-opacity=".28"/>
+    <stop offset="100%" stop-color="#0a66c2" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Bottom left accent line -->
+  <rect x="80" y="506" width="200" height="3" rx="2" fill="#0a66c2" opacity=".7"/>
+
+  <!-- SPB watermark (large, faint) -->
+  <text x="70" y="210"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-size="148" font-weight="700"
+        fill="#0a66c2" opacity=".12">SPB</text>
+
+  <!-- Name -->
+  <text x="80" y="316"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-size="64" font-weight="700"
+        fill="#e5e7eb">Sai Pratheek Banda</text>
+
+  <!-- Title -->
+  <text x="80" y="386"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-size="34" font-weight="400"
+        fill="#9ca3af">Senior Analytics Engineer</text>
+
+  <!-- Stack tagline -->
+  <text x="80" y="444"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-size="26" font-weight="400"
+        fill="#6b7280">Azure · Databricks · PySpark · Data Architecture</text>
+
+  <!-- URL -->
+  <text x="80" y="572"
+        font-family="Inter, system-ui, -apple-system, sans-serif"
+        font-size="24" font-weight="600"
+        fill="#0a66c2">saipratheekbanda.com</text>
+</svg>

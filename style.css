@@ -429,3 +429,157 @@ a:hover { text-decoration: underline; }
   align-self: flex-start;
   margin-top: 0.5rem;
 }
+
+/* Override: left-align form text and constrain width */
+.contact form {
+  max-width: 480px;
+  margin: 1rem auto 0;
+  text-align: left;
+}
+
+/* ===== Avatar — SPB initials placeholder until real photo is added ===== */
+.avatar-wrap {
+  position: relative;
+  width: 240px;
+  max-width: 100%;
+}
+.avatar-initials {
+  width: 240px;
+  height: 240px;
+  max-width: 100%;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--brand), #39bdf8);
+  color: #fff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+.avatar-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+.avatar-hidden { display: none; }
+
+/* ===== Hero eyebrow label ===== */
+.hero-eyebrow {
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--brand);
+  margin: 0 0 .6rem;
+}
+
+/* ===== Impact strip ===== */
+.impact-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1.5rem 1rem;
+  padding: 1.5rem 1.25rem;
+  margin: 1.5rem 0;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in oklab, var(--brand) 15%, transparent);
+}
+.impact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.impact-number {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  background: linear-gradient(90deg, #0a66c2, #39bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.1;
+}
+.impact-label {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: .25rem;
+  font-weight: 500;
+}
+
+/* ===== Skill domain cards ===== */
+#skills { margin: 1.25rem 0 2rem; }
+#skills h2 { margin-bottom: .25rem; }
+.skill-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.skill-card {
+  background: var(--card);
+  border: 1px solid color-mix(in oklab, var(--text) 10%, transparent);
+  border-radius: var(--radius);
+  padding: 1.1rem 1rem .9rem;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.skill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+.skill-card-icon {
+  font-size: 1.5rem;
+  margin-bottom: .4rem;
+  display: block;
+}
+.skill-card h3 {
+  font-size: .95rem;
+  font-weight: 700;
+  margin: 0 0 .6rem;
+  color: var(--text);
+}
+
+/* ===== Outcome chips on featured project cards ===== */
+.outcome-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .5rem 0 .65rem;
+}
+.outcome-chips span {
+  font-size: .78rem;
+  font-weight: 600;
+  padding: .2rem .5rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--brand) 10%, var(--card));
+  color: var(--brand);
+  border: 1px solid color-mix(in oklab, var(--brand) 20%, transparent);
+}
+
+/* ===== Contact form status message ===== */
+.form-status {
+  margin-top: .5rem;
+  font-size: .95rem;
+  color: var(--muted);
+  min-height: 1.4em;
+}
+
+/* ===== Scroll reveal animations ===== */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .5s ease, transform .5s ease;
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

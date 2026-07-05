@@ -15,7 +15,6 @@
   }
 
   function apply(pref) {
-    // Apply data-theme on <html>
     if (pref === "dark") {
       html.setAttribute("data-theme", "dark");
     } else if (pref === "light") {
@@ -24,39 +23,31 @@
       html.removeAttribute("data-theme"); // auto
     }
 
-    // Reflect visual state (thumb left for light, right for dark) based on *effective* theme
     const isDark = effectiveIsDark();
     el.dataset.state = isDark ? "dark" : "light";
-    el.setAttribute("aria-checked", String(isDark)); // true when dark
+    el.setAttribute("aria-checked", String(isDark));
   }
 
   function getPref() { return localStorage.getItem(KEY) || "auto"; }
   function setPref(v) { localStorage.setItem(KEY, v); apply(v); }
 
-  // Init: start in Auto (no saved pref), so follow system
   apply(getPref());
 
-  // Live reaction when OS theme changes (only matters when in Auto)
   mql.addEventListener?.("change", () => { if (getPref()==="auto") apply("auto"); });
 
-  // Click: toggle Light <-> Dark
   el.addEventListener("click", () => {
     const pref = getPref();
     if (pref === "auto") {
-      // From auto, choose the opposite of current effective theme to make the change obvious
       setPref(effectiveIsDark() ? "light" : "dark");
     } else {
-      // Toggle explicit modes
       setPref(pref === "dark" ? "light" : "dark");
     }
   });
 
-  // Keyboard: Space/Enter toggles
   el.addEventListener("keydown", (e) => {
     if (e.key === " " || e.key === "Enter") { e.preventDefault(); el.click(); }
   });
 
-  // Long-press (600ms) anywhere on the toggle resets to Auto (no separate "A" button)
   let pressTimer = null;
   const startPress = () => { pressTimer = setTimeout(() => setPref("auto"), 600); };
   const endPress = () => { if (pressTimer) clearTimeout(pressTimer); pressTimer = null; };
@@ -68,31 +59,53 @@
 })();
 // ---- end of 2-position THEME TOGGLE ----
 
-// Contact Form Validation
-document.addEventListener('DOMContentLoaded', function() {
-  const form = document.querySelector('.contact form');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      let isValid = true;
-      // Simple validation
-      if (!name) {
-        alert('Please enter your name.');
-        isValid = false;
+// ---- Contact form (Formspree fetch submit) ----
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const status = document.getElementById('form-status');
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    status.textContent = '';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = "Message sent! I'll get back to you soon.";
+        form.reset();
+      } else {
+        status.textContent = 'Something went wrong. Please email me directly.';
       }
-      if (!email || !/\S+@\S+\.\S+/.test(email)) {
-        alert('Please enter a valid email address.');
-        isValid = false;
-      }
-      if (!message) {
-        alert('Please enter a message.');
-        isValid = false;
-      }
-      if (!isValid) {
-        e.preventDefault();
+    } catch {
+      status.textContent = 'Network error. Please try again.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    }
+  });
+});
+// ---- end of Contact form ----
+
+// ---- Scroll reveal (IntersectionObserver, fires once per element) ----
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
       }
     });
-  }
-});
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+// ---- end of Scroll reveal ----
