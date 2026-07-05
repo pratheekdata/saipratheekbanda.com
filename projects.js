@@ -704,18 +704,22 @@ function buildStackFilter() {
     Object.values(projectsData).flat().flatMap(p => p.stack)
   )].sort();
 
-  const wrap = document.createElement('div');
-  wrap.className = 'stack-filter-wrap';
-  wrap.setAttribute('role', 'group');
-  wrap.setAttribute('aria-label', 'Filter by technology');
-  wrap.innerHTML = allStacks.map(s =>
-    `<button class="stack-pill" data-stack="${s}" type="button">${s}</button>`
-  ).join('');
+  const det = document.createElement('details');
+  det.className = 'stack-filter-details';
+  det.innerHTML = `
+    <summary class="stack-filter-summary">
+      Filter by stack <span class="stack-active-count" id="stack-active-count" hidden></span>
+    </summary>
+    <div class="stack-filter-wrap" role="group" aria-label="Filter by technology">
+      ${allStacks.map(s =>
+        `<button class="stack-pill" data-stack="${s}" type="button">${s}</button>`
+      ).join('')}
+    </div>`;
 
   const searchWrap = document.querySelector('.search-wrap');
-  if (searchWrap) searchWrap.after(wrap);
+  if (searchWrap) searchWrap.after(det);
 
-  wrap.addEventListener('click', e => {
+  det.addEventListener('click', e => {
     const pill = e.target.closest('.stack-pill');
     if (!pill) return;
     const stack = pill.dataset.stack;
@@ -725,6 +729,12 @@ function buildStackFilter() {
     } else {
       activeStackFilters.add(stack);
       pill.classList.add('active');
+    }
+    const badge = document.getElementById('stack-active-count');
+    if (badge) {
+      const n = activeStackFilters.size;
+      badge.hidden = n === 0;
+      badge.textContent = n;
     }
     applyFilters();
   });

@@ -434,20 +434,61 @@
 .back-link:hover { opacity: 1; }
 
 /* --------------------------
-   Tech stack filter pills
+   Tech stack filter (collapsible)
    -------------------------- */
+.stack-filter-details {
+  border-bottom: 1px solid color-mix(in oklab, var(--text) 8%, transparent);
+}
+
+.stack-filter-summary {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .4rem .75rem;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.stack-filter-summary::-webkit-details-marker { display: none; }
+.stack-filter-summary::before {
+  content: '▸';
+  font-size: .7rem;
+  transition: transform .15s;
+  color: var(--muted);
+}
+.stack-filter-details[open] .stack-filter-summary::before {
+  transform: rotate(90deg);
+}
+.stack-filter-summary:hover { color: var(--brand); }
+
+.stack-active-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand);
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 1.3em;
+  padding: 0 .35em;
+  line-height: 1.6;
+}
+
 .stack-filter-wrap {
   display: flex;
   flex-wrap: wrap;
   gap: .3rem;
-  padding: .5rem .75rem .55rem;
-  border-bottom: 1px solid color-mix(in oklab, var(--text) 8%, transparent);
+  padding: .35rem .75rem .6rem;
 }
 
 .stack-pill {
-  font-size: .72rem;
+  font-size: .7rem;
   font-weight: 600;
-  padding: .18em .55em;
+  padding: .15em .5em;
   border-radius: 999px;
   border: 1px solid color-mix(in oklab, var(--text) 14%, transparent);
   background: color-mix(in oklab, var(--card) 80%, transparent);
