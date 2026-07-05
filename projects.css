@@ -66,10 +66,9 @@
   padding-bottom: .85rem;
   margin-bottom: .75rem;
   border-bottom: 1px solid color-mix(in oklab, var(--text) 12%, transparent);
-  background: linear-gradient(180deg,
-      color-mix(in oklab, var(--card) 95%, transparent),
-      color-mix(in oklab, var(--card) 80%, transparent));
-  backdrop-filter: blur(16px);
+  /* Must be opaque — sidebar has overflow:auto so items scroll behind this
+     header; any transparency lets them bleed through the title area */
+  background: var(--card);
 }
 .sidebar h1 { font-size: 1.1rem; margin: .25rem 0; letter-spacing: .02em; }
 
