@@ -181,8 +181,9 @@ a:hover { text-decoration: underline; }
 /* prevent long words or links from forcing horizontal scroll inside cards */
 .cats .cat, .cats .cat p, .cats .cat .tease { overflow-wrap: break-word; word-break: break-word; }
 
-/* safeguard: prevent horizontal scroll without creating a second scrollbar on inner containers */
-body { overflow-x: hidden; }
+/* overflow-x must be on html, not body — body { overflow-x: hidden } makes body the
+   scroll container, which breaks position: sticky on the site header */
+html { overflow-x: hidden; }
 .cats .tease { color: var(--muted); margin: .25rem 0 .5rem; }
 .cat-list { margin: .4rem 0 0; padding-left: 1.1rem; }
 .cat-list li { margin: .5rem 0; }
