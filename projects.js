@@ -584,6 +584,43 @@ function buildSidebar() {
   updateCompactLabel();
 }
 
+// ---------- Overview (default landing state) ----------
+function renderOverview() {
+  const total = Object.values(projectsData).reduce((n, a) => n + a.length, 0);
+  contentEl.innerHTML = `
+    <div class="overview">
+      <h2>All Projects <span class="overview-count">${total}</span></h2>
+      <p class="meta">End-to-end case studies across data platforms, automation, AI, and cloud. Click any project for the full case study.</p>
+      <div class="overview-grid">
+        ${Object.entries(projectsData).flatMap(([cat, items]) =>
+          items.map(p => `
+            <a class="overview-card" href="#${p.id}">
+              <span class="overview-badge">${cat}</span>
+              <h3>${p.name}</h3>
+              <p>${p.summary}</p>
+              <div class="overview-stack">
+                ${p.stack.slice(0, 4).map(s => `<span>${s}</span>`).join('')}
+                ${p.stack.length > 4 ? `<span class="more">+${p.stack.length - 4}</span>` : ''}
+              </div>
+            </a>
+          `)
+        ).join('')}
+      </div>
+    </div>
+  `;
+  highlightActive();
+}
+
+// Back-to-overview click delegation (persists across re-renders)
+contentEl.addEventListener('click', e => {
+  if (e.target.closest('[data-back]')) {
+    e.preventDefault();
+    history.pushState(null, '', location.pathname + location.search);
+    renderOverview();
+    window.scrollTo({ top: 0 });
+  }
+});
+
 // ---------- Render content ----------
 function renderProject(id) {
   const proj = findProject(id);
@@ -599,6 +636,7 @@ function renderProject(id) {
 
   contentEl.innerHTML = `
     <article>
+      <a class="back-link" href="#" data-back>← All projects</a>
       <h2>${proj.name}</h2>
       <div class="meta">${proj.summary}</div>
 
@@ -620,6 +658,12 @@ function renderProject(id) {
     </article>
   `;
 
+  // Scroll content into view if user is scrolled past it
+  const rect = contentEl.getBoundingClientRect();
+  if (rect.top < 88) {
+    window.scrollTo({ top: window.scrollY + rect.top - 88, behavior: 'smooth' });
+  }
+
   contentEl.focus();
   highlightActive();
 
@@ -639,8 +683,7 @@ function renderProject(id) {
 function route() {
   const raw = location.hash.replace('#','');
   if (!raw) {
-    const first = Object.values(projectsData).find(arr => arr.length)?.[0];
-    if (first) location.hash = `#${first.id}`;
+    renderOverview();
     return;
   }
   if (raw.startsWith('cat/')) {
@@ -653,40 +696,68 @@ function route() {
 
 window.addEventListener('hashchange', route);
 
-// ---------- Search: filter + auto-expand matches ----------
-searchEl?.addEventListener('input', (e) => {
-  const q = e.target.value.trim().toLowerCase();
+// ---------- Tech stack filter ----------
+let activeStackFilters = new Set();
+
+function buildStackFilter() {
+  const allStacks = [...new Set(
+    Object.values(projectsData).flat().flatMap(p => p.stack)
+  )].sort();
+
+  const wrap = document.createElement('div');
+  wrap.className = 'stack-filter-wrap';
+  wrap.setAttribute('role', 'group');
+  wrap.setAttribute('aria-label', 'Filter by technology');
+  wrap.innerHTML = allStacks.map(s =>
+    `<button class="stack-pill" data-stack="${s}" type="button">${s}</button>`
+  ).join('');
+
+  const searchWrap = document.querySelector('.search-wrap');
+  if (searchWrap) searchWrap.after(wrap);
+
+  wrap.addEventListener('click', e => {
+    const pill = e.target.closest('.stack-pill');
+    if (!pill) return;
+    const stack = pill.dataset.stack;
+    if (activeStackFilters.has(stack)) {
+      activeStackFilters.delete(stack);
+      pill.classList.remove('active');
+    } else {
+      activeStackFilters.add(stack);
+      pill.classList.add('active');
+    }
+    applyFilters();
+  });
+}
+
+function applyFilters() {
+  const q = searchEl?.value.trim().toLowerCase() || '';
+  const stacks = [...activeStackFilters];
 
   document.querySelectorAll('.side-group').forEach(groupEl => {
     let matches = 0;
-
-    const links = groupEl.querySelectorAll('.side-link');
-    links.forEach(a => {
+    groupEl.querySelectorAll('.side-link').forEach(a => {
       const id = a.getAttribute('href').slice(1);
       const proj = findProject(id);
-      const hay = [
-        a.textContent,
-        proj?.summary || '',
-        ...(proj?.stack || [])
-      ].join(' ').toLowerCase();
-
-      const hit = hay.includes(q);
+      const hay = [a.textContent, proj?.summary || '', ...(proj?.stack || [])].join(' ').toLowerCase();
+      const textMatch = !q || hay.includes(q);
+      const stackMatch = !stacks.length || stacks.some(s => proj?.stack?.includes(s));
+      const hit = textMatch && stackMatch;
       a.parentElement.style.display = hit ? '' : 'none';
       if (hit) matches++;
     });
-
-    // update badge count to reflect current matches
     const count = groupEl.querySelector('.count');
     if (count) count.textContent = matches;
-
-    // hide whole group if no matches; open if has matches
-    const det = groupEl.querySelector('.acc');
     groupEl.style.display = matches ? '' : 'none';
-    if (det) det.open = matches > 0;
+    const det = groupEl.querySelector('.acc');
+    if (det && matches) det.open = true;
   });
 
   updateToggleAllLabel();
-});
+}
+
+// ---------- Search: filter + auto-expand matches ----------
+searchEl?.addEventListener('input', applyFilters);
 
 // ---------- Toolbar interactions ----------
 toggleAllBtn?.addEventListener('click', () => {
@@ -792,12 +863,18 @@ resetBtn?.addEventListener('click', () => {
   updateCompactLabel(false);
 });
 
+// ---------- Mobile sidebar toggle ----------
+document.getElementById('mob-sidebar-btn')?.addEventListener('click', () => {
+  sidebarEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
 // ---------- Init ----------
 (function init() {
   const savedCompact = localStorage.getItem(LS_COMPACT) === "1";
   sidebarEl.classList.toggle('compact', savedCompact);
 
   buildSidebar();
+  buildStackFilter();
   updateCompactLabel(savedCompact);
   route();
 })();
