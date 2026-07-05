@@ -94,6 +94,11 @@ a:hover { text-decoration: underline; }
 .subtitle { color: var(--muted); margin: 0 0 1.25rem; }
 .accent { background: linear-gradient(90deg, #0a66c2, #39bdf8); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .ctas { display: flex; gap: .75rem; flex-wrap: wrap; }
+.hero-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .hero-media img { width: 240px; max-width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
 
 .card { background: var(--card); padding: 1.25rem; border-radius: var(--radius); }
