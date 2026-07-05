@@ -471,6 +471,8 @@
   flex-wrap: wrap;
   gap: .3rem;
   padding: .35rem .75rem .6rem;
+  max-height: 110px;
+  overflow-y: auto;
 }
 
 .stack-pill {
